@@ -1,0 +1,280 @@
+COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+python3 15705 jesus cwd DIR 8,18 4096 6425027 /home/jesus/Downloads/people_counting_depth_cam-python3
+python3 15705 jesus rtd DIR 8,18 4096 2 /
+python3 15705 jesus txt REG 8,18 4452016 794089 /usr/bin/python3.5
+python3 15705 jesus mem REG 8,18 112552 798345 /usr/lib/x86_64-linux-gnu/libtbbmalloc.so.2
+python3 15705 jesus mem REG 8,18 39224 1446675 /lib/x86_64-linux-gnu/libcrypt-2.23.so
+python3 15705 jesus mem REG 8,18 304072 795473 /usr/lib/x86_64-linux-gnu/libhx509.so.5.0.0
+python3 15705 jesus mem REG 8,18 60928 795455 /usr/lib/x86_64-linux-gnu/libheimbase.so.1.0.0
+python3 15705 jesus mem REG 8,18 166128 796136 /usr/lib/x86_64-linux-gnu/libwind.so.0.0.0
+python3 15705 jesus mem REG 8,18 89904 795875 /usr/lib/x86_64-linux-gnu/libroken.so.18.1.0
+python3 15705 jesus mem REG 8,18 204168 795453 /usr/lib/x86_64-linux-gnu/libhcrypto.so.4.1.0
+python3 15705 jesus mem REG 8,18 661872 794890 /usr/lib/x86_64-linux-gnu/libasn1.so.8.0.0
+python3 15705 jesus mem REG 8,18 560808 795560 /usr/lib/x86_64-linux-gnu/libkrb5.so.26.0.0
+python3 15705 jesus mem REG 8,18 35920 795457 /usr/lib/x86_64-linux-gnu/libheimntlm.so.0.1.0
+python3 15705 jesus mem REG 8,18 257208 787795 /usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0
+python3 15705 jesus mem REG 8,18 14256 1446726 /lib/x86_64-linux-gnu/libkeyutils.so.1.5
+python3 15705 jesus mem REG 8,18 264256 795376 /usr/lib/x86_64-linux-gnu/libgssapi.so.3.0.0
+python3 15705 jesus mem REG 8,18 109296 795902 /usr/lib/x86_64-linux-gnu/libsasl2.so.2.0.25
+python3 15705 jesus mem REG 8,18 101200 1446817 /lib/x86_64-linux-gnu/libresolv-2.23.so
+python3 15705 jesus mem REG 8,18 30560 793983 /usr/lib/x86_64-linux-gnu/libaec.so.0.0.3
+python3 15705 jesus mem REG 8,18 25913104 795492 /usr/lib/x86_64-linux-gnu/libicudata.so.55.1
+python3 15705 jesus mem REG 8,18 1223128 788642 /usr/lib/x86_64-linux-gnu/libgfortran.so.3.0.0
+python3 15705 jesus mem REG 8,18 31962416 788964 /usr/lib/libopenblasp-r0.2.18.so
+python3 15705 jesus mem REG 8,18 31104 795188 /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+python3 15705 jesus mem REG 8,18 43664 795564 /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+python3 15705 jesus mem REG 8,18 14648 1453405 /lib/x86_64-linux-gnu/libcom_err.so.2.1
+python3 15705 jesus mem REG 8,18 186872 795554 /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+python3 15705 jesus mem REG 8,18 860392 795562 /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+python3 15705 jesus mem REG 8,18 80496 1446709 /lib/x86_64-linux-gnu/libgpg-error.so.0.17.0
+python3 15705 jesus mem REG 8,18 138448 794024 /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
+python3 15705 jesus mem REG 8,18 59640 792182 /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2.10.5
+python3 15705 jesus mem REG 8,18 870240 788785 /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6
+python3 15705 jesus mem REG 8,18 322928 792183 /usr/lib/x86_64-linux-gnu/libldap_r-2.4.so.2.10.5
+python3 15705 jesus mem REG 8,18 10008 796691 /usr/lib/x86_64-linux-gnu/libsz.so.2.0.1
+python3 15705 jesus mem REG 8,18 126232 796696 /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.10.0.2
+python3 15705 jesus mem REG 8,18 1636360 795506 /usr/lib/x86_64-linux-gnu/libicuuc.so.55.1
+python3 15705 jesus mem REG 8,18 108456 796703 /usr/lib/x86_64-linux-gnu/liburiparser.so.1.0.20
+python3 15705 jesus mem REG 8,18 43248 796701 /usr/lib/x86_64-linux-gnu/libminizip.so.1.0.0
+python3 15705 jesus mem REG 8,18 39272 795592 /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1
+python3 15705 jesus mem REG 8,18 1678400 796682 /usr/lib/x86_64-linux-gnu/libgeos-3.5.0.so
+python3 15705 jesus mem REG 8,18 353360 795572 /usr/lib/x86_64-linux-gnu/liblcms2.so.2.0.6
+python3 15705 jesus mem REG 8,18 440840 793940 /usr/lib/x86_64-linux-gnu/libsuperlu.so.4.0.0
+python3 15705 jesus mem REG 8,18 306576 793985 /usr/lib/libarpack.so.2.0.0
+python3 15705 jesus mem REG 8,18 6172176 920624 /usr/lib/openblas-base/liblapack.so.3
+python3 15705 jesus mem REG 8,18 395528 920623 /usr/lib/openblas-base/libblas.so.3
+python3 15705 jesus mem REG 8,18 76192 795980 /usr/lib/x86_64-linux-gnu/libtasn1.so.6.5.1
+python3 15705 jesus mem REG 8,18 207208 795508 /usr/lib/x86_64-linux-gnu/libidn.so.11.6.15
+python3 15705 jesus mem REG 8,18 408472 795747 /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.1.0
+python3 15705 jesus mem REG 8,18 273832 795202 /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0
+python3 15705 jesus mem REG 8,18 522664 795321 /usr/lib/x86_64-linux-gnu/libgmp.so.10.3.0
+python3 15705 jesus mem REG 8,18 219336 795684 /usr/lib/x86_64-linux-gnu/libnettle.so.6.2
+python3 15705 jesus mem REG 8,18 207640 795459 /usr/lib/x86_64-linux-gnu/libhogweed.so.4.2
+python3 15705 jesus mem REG 8,18 301376 795378 /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+python3 15705 jesus mem REG 8,18 919168 1446705 /lib/x86_64-linux-gnu/libgcrypt.so.20.0.5
+python3 15705 jesus mem REG 8,18 525368 795737 /usr/lib/x86_64-linux-gnu/liborc-0.4.so.0.25.0
+python3 15705 jesus mem REG 8,18 34624 795731 /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2
+python3 15705 jesus mem REG 8,18 43936 795719 /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+python3 15705 jesus mem REG 8,18 195624 794001 /usr/lib/x86_64-linux-gnu/libsoxr.so.0.1.1
+python3 15705 jesus mem REG 8,18 3872160 787444 /usr/lib/x86_64-linux-gnu/libmysqlclient.so.20.3.15
+python3 15705 jesus mem REG 8,18 1809656 796232 /usr/lib/x86_64-linux-gnu/libxml2.so.2.9.3
+python3 15705 jesus mem REG 8,18 444800 793944 /usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4.4.0
+python3 15705 jesus mem REG 8,18 5773128 796731 /usr/lib/x86_64-linux-gnu/libspatialite.so.7.1.0
+python3 15705 jesus mem REG 8,18 1558744 795087 /usr/lib/x86_64-linux-gnu/libdap.so.17.3.1
+python3 15705 jesus mem REG 8,18 256032 795181 /usr/lib/x86_64-linux-gnu/libdapclient.so.6.1.1
+python3 15705 jesus mem REG 8,18 194544 796729 /usr/lib/x86_64-linux-gnu/libpq.so.5.8
+python3 15705 jesus mem REG 8,18 34968 796685 /usr/lib/x86_64-linux-gnu/libgif.so.7.0.0
+python3 15705 jesus mem REG 8,18 135320 796723 /usr/lib/libogdi.so.3.2
+python3 15705 jesus mem REG 8,18 512928 796688 /usr/lib/libdfalt.so.0.0.0
+python3 15705 jesus mem REG 8,18 146672 796687 /usr/lib/libmfhdfalt.so.0.0.0
+python3 15705 jesus mem REG 8,18 2738416 796694 /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.10.1.0
+python3 15705 jesus mem REG 8,18 1393512 796713 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11.0.0
+python3 15705 jesus mem REG 8,18 242304 796727 /usr/lib/x86_64-linux-gnu/libopenjp2.so.2.1.2
+python3 15705 jesus mem REG 8,18 3624896 796733 /usr/lib/x86_64-linux-gnu/libxerces-c-3.1.so
+python3 15705 jesus mem REG 8,18 236760 796709 /usr/lib/x86_64-linux-gnu/libkmlengine.so.1.3.0
+python3 15705 jesus mem REG 8,18 756448 796707 /usr/lib/x86_64-linux-gnu/libkmldom.so.1.3.0
+python3 15705 jesus mem REG 8,18 105592 796705 /usr/lib/x86_64-linux-gnu/libkmlbase.so.1.3.0
+python3 15705 jesus mem REG 8,18 72120 796735 /usr/lib/x86_64-linux-gnu/libodbcinst.so.2.0.0
+python3 15705 jesus mem REG 8,18 427552 796715 /usr/lib/x86_64-linux-gnu/libodbc.so.2.0.0
+python3 15705 jesus mem REG 8,18 99160 796663 /usr/lib/x86_64-linux-gnu/libepsilon.so.1.0.0
+python3 15705 jesus mem REG 8,18 187744 796683 /usr/lib/x86_64-linux-gnu/libgeos_c.so.1.9.0
+python3 15705 jesus mem REG 8,18 39072 796680 /usr/lib/x86_64-linux-gnu/libfreexl.so.1.1.0
+python3 15705 jesus mem REG 8,18 2616264 787875 /usr/lib/x86_64-linux-gnu/libpoppler.so.58.0.0
+python3 15705 jesus mem REG 8,18 370960 796721 /usr/lib/x86_64-linux-gnu/libproj.so.9.1.0
+python3 15705 jesus mem REG 8,18 31952 793987 /usr/lib/libarmadillo.so.6.500.5
+python3 15705 jesus mem REG 8,18 27040 794672 /usr/lib/x86_64-linux-gnu/libIlmThread-2_2.so.12.0.0
+python3 15705 jesus mem REG 8,18 121152 794664 /usr/lib/x86_64-linux-gnu/libIex-2_2.so.12.0.0
+python3 15705 jesus mem REG 8,18 58256 795546 /usr/lib/x86_64-linux-gnu/libjbig.so.0
+python3 15705 jesus mem REG 8,18 1239440 787005 /usr/lib/x86_64-linux-gnu/libgnutls.so.30.6.2
+python3 15705 jesus mem REG 8,18 297728 794505 /usr/lib/x86_64-linux-gnu/libbluray.so.1.9.2
+python3 15705 jesus mem REG 8,18 317904 794507 /usr/lib/x86_64-linux-gnu/libgme.so.0.6.0
+python3 15705 jesus mem REG 8,18 309896 794509 /usr/lib/x86_64-linux-gnu/libmodplug.so.1.0.0
+python3 15705 jesus mem REG 8,18 113584 795883 /usr/lib/x86_64-linux-gnu/librtmp.so.1
+python3 15705 jesus mem REG 8,18 304664 788451 /usr/lib/x86_64-linux-gnu/libssh-gcrypt.so.4.4.1
+python3 15705 jesus mem REG 8,18 110720 793934 /usr/lib/x86_64-linux-gnu/libcrystalhd.so.3.6
+python3 15705 jesus mem REG 8,18 55568 793936 /usr/lib/x86_64-linux-gnu/libgsm.so.1.0.12
+python3 15705 jesus mem REG 8,18 289208 793991 /usr/lib/x86_64-linux-gnu/libmp3lame.so.0.0.0
+python3 15705 jesus mem REG 8,18 144240 793994 /usr/lib/x86_64-linux-gnu/libopenjpeg.so.1.5.2
+python3 15705 jesus mem REG 8,18 301288 795735 /usr/lib/x86_64-linux-gnu/libopus.so.0.5.2
+python3 15705 jesus mem REG 8,18 869560 793938 /usr/lib/x86_64-linux-gnu/libschroedinger-1.0.so.0.11.0
+python3 15705 jesus mem REG 8,18 51376 793997 /usr/lib/x86_64-linux-gnu/libshine.so.3.0.1
+python3 15705 jesus mem REG 8,18 30904 793999 /usr/lib/x86_64-linux-gnu/libsnappy.so.1.3.0
+python3 15705 jesus mem REG 8,18 100240 795957 /usr/lib/x86_64-linux-gnu/libspeex.so.1.5.0
+python3 15705 jesus mem REG 8,18 104688 795996 /usr/lib/x86_64-linux-gnu/libtheoradec.so.1.1.4
+python3 15705 jesus mem REG 8,18 256360 795998 /usr/lib/x86_64-linux-gnu/libtheoraenc.so.1.1.2
+python3 15705 jesus mem REG 8,18 125104 794005 /usr/lib/x86_64-linux-gnu/libtwolame.so.0.0.0
+python3 15705 jesus mem REG 8,18 174440 796095 /usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.8
+python3 15705 jesus mem REG 8,18 690360 796097 /usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.11
+python3 15705 jesus mem REG 8,18 2230840 788756 /usr/lib/x86_64-linux-gnu/libvpx.so.3.0.0
+python3 15705 jesus mem REG 8,18 166208 796108 /usr/lib/x86_64-linux-gnu/libwavpack.so.1.1.7
+python3 15705 jesus mem REG 8,18 1216304 794009 /usr/lib/x86_64-linux-gnu/libx264.so.148
+python3 15705 jesus mem REG 8,18 10558256 794012 /usr/lib/x86_64-linux-gnu/libx265.so.79
+python3 15705 jesus mem REG 8,18 700056 794013 /usr/lib/x86_64-linux-gnu/libxvidcore.so.4.3
+python3 15705 jesus mem REG 8,18 568728 794015 /usr/lib/x86_64-linux-gnu/libzvbi.so.0.13.2
+python3 15705 jesus mem REG 8,18 113144 794007 /usr/lib/x86_64-linux-gnu/libva.so.1.3900.0
+python3 15705 jesus mem REG 8,18 116728 794003 /usr/lib/x86_64-linux-gnu/libswresample-ffmpeg.so.1.2.101
+python3 15705 jesus mem REG 8,18 162816 796085 /usr/lib/x86_64-linux-gnu/libv4lconvert.so.0.0.0
+python3 15705 jesus mem REG 8,18 694800 794503 /usr/lib/x86_64-linux-gnu/libfreetype.so.6.12.1
+python3 15705 jesus mem REG 8,18 59640 795855 /usr/lib/x86_64-linux-gnu/libraw1394.so.11.1.0
+python3 15705 jesus mem REG 8,18 12521680 796738 /usr/lib/libgdal.so.1.18.3
+python3 15705 jesus mem REG 8,18 272432 794658 /usr/lib/x86_64-linux-gnu/libHalf.so.12.0.0
+python3 15705 jesus mem REG 8,18 2940136 798279 /usr/lib/x86_64-linux-gnu/libIlmImf-2_2.so.22.0.0
+python3 15705 jesus mem REG 8,18 317792 795543 /usr/lib/x86_64-linux-gnu/libjasper.so.1.0.0
+python3 15705 jesus mem REG 8,18 479592 796877 /usr/lib/x86_64-linux-gnu/libtiff.so.5.2.4
+python3 15705 jesus mem REG 8,18 149904 1446806 /lib/x86_64-linux-gnu/libpng12.so.0.54.0
+python3 15705 jesus mem REG 8,18 375168 796122 /usr/lib/x86_64-linux-gnu/libwebp.so.5.0.4
+python3 15705 jesus mem REG 8,18 12051384 794038 /usr/lib/x86_64-linux-gnu/libavcodec-ffmpeg.so.56.60.100
+python3 15705 jesus mem REG 8,18 550904 796865 /usr/lib/x86_64-linux-gnu/libswscale-ffmpeg.so.3.1.101
+python3 15705 jesus mem REG 8,18 374808 793989 /usr/lib/x86_64-linux-gnu/libavutil-ffmpeg.so.54.31.100
+python3 15705 jesus mem REG 8,18 2094240 794515 /usr/lib/x86_64-linux-gnu/libavformat-ffmpeg.so.56.40.101
+python3 15705 jesus mem REG 8,18 55992 796083 /usr/lib/x86_64-linux-gnu/libv4l2.so.0.0.0
+python3 15705 jesus mem REG 8,18 24496 796081 /usr/lib/x86_64-linux-gnu/libv4l1.so.0.0.0
+python3 15705 jesus mem REG 8,18 441776 798326 /usr/lib/libxine.so.2.5.0
+python3 15705 jesus mem REG 8,18 2023752 798500 /usr/lib/libdevicesensor.so
+python3 15705 jesus mem REG 8,18 12866800 788017 /usr/local/lib/libopencv_core.so.3.1.0
+python3 15705 jesus mem REG 8,18 26449016 794360 /usr/local/lib/libopencv_imgproc.so.3.1.0
+python3 15705 jesus mem REG 8,18 221176 798341 /usr/lib/x86_64-linux-gnu/libdc1394.so.22.1.11
+python3 15705 jesus mem REG 8,18 239144 798347 /usr/lib/x86_64-linux-gnu/libtbb.so.2
+python3 15705 jesus mem REG 8,18 467784 794357 /usr/local/lib/libopencv_flann.so.3.1.0
+python3 15705 jesus mem REG 8,18 868968 794363 /usr/local/lib/libopencv_ml.so.3.1.0
+python3 15705 jesus mem REG 8,18 2392208 794366 /usr/local/lib/libopencv_photo.so.3.1.0
+python3 15705 jesus mem REG 8,18 1802112 794369 /usr/local/lib/libopencv_video.so.3.1.0
+python3 15705 jesus mem REG 8,18 1665768 794375 /usr/local/lib/libopencv_imgcodecs.so.3.1.0
+python3 15705 jesus mem REG 8,18 237760 794381 /usr/local/lib/libopencv_videoio.so.3.1.0
+python3 15705 jesus mem REG 8,18 29872 794384 /usr/local/lib/libopencv_highgui.so.3.1.0
+python3 15705 jesus mem REG 8,18 941192 794394 /usr/local/lib/libopencv_features2d.so.3.1.0
+python3 15705 jesus mem REG 8,18 1664976 794397 /usr/local/lib/libopencv_calib3d.so.3.1.0
+python3 15705 jesus mem REG 8,18 400816 796544 /usr/local/lib/libopencv_videostab.so.3.1.0
+python3 15705 jesus mem REG 8,18 210384 794390 /usr/local/lib/libopencv_superres.so.3.1.0
+python3 15705 jesus mem REG 8,18 489216 794387 /usr/local/lib/libopencv_objdetect.so.3.1.0
+python3 15705 jesus mem REG 8,18 665664 796541 /usr/local/lib/libopencv_stitching.so.3.1.0
+python3 15705 jesus mem REG 8,18 283376 794378 /usr/local/lib/libopencv_shape.so.3.1.0
+python3 15705 jesus mem REG 8,18 245264 927962 /usr/lib/OpenNI2/Drivers/libmodule-terabee2.so.0
+python3 15705 jesus mem REG 8,18 22640 794809 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+python3 15705 jesus mem REG 8,18 14456 794798 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+python3 15705 jesus mem REG 8,18 137728 796222 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+python3 15705 jesus mem REG 8,18 18976 1446673 /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+python3 15705 jesus mem REG 8,18 456632 1446794 /lib/x86_64-linux-gnu/libpcre.so.3.13.2
+python3 15705 jesus mem REG 8,18 1285616 794794 /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+python3 15705 jesus mem REG 8,18 73640 794811 /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+python3 15705 jesus mem REG 8,18 39416 794833 /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+python3 15705 jesus mem REG 8,18 93824 794662 /usr/lib/x86_64-linux-gnu/libICE.so.6.3.0
+python3 15705 jesus mem REG 8,18 30960 794784 /usr/lib/x86_64-linux-gnu/libSM.so.6.0.1
+python3 15705 jesus mem REG 8,18 1115136 1454196 /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2
+python3 15705 jesus mem REG 8,18 6160 786873 /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0.4800.2
+python3 15705 jesus mem REG 8,18 3594304 1580560 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libcrypto-d3d32d0c.so.1.1
+python3 15705 jesus mem REG 8,18 752560 1580552 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libssl-fdf0b66c.so.1.1
+python3 15705 jesus mem REG 8,18 66816 1580551 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libbz2-7225278b.so.1.0.3
+python3 15705 jesus mem REG 8,18 3344336 1580559 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libvpx-a5a5a92c.so.6.1.0
+python3 15705 jesus mem REG 8,18 124032 1580557 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libswresample-cb108909.so.3.6.100
+python3 15705 jesus mem REG 8,18 89696 1446703 /lib/x86_64-linux-gnu/libgcc_s.so.1
+python3 15705 jesus mem REG 8,18 1566440 788648 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+python3 15705 jesus mem REG 8,18 31712 1446819 /lib/x86_64-linux-gnu/librt-2.23.so
+python3 15705 jesus mem REG 8,18 87848 1580556 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libz-a147dcb0.so.1.2.3
+python3 15705 jesus mem REG 8,18 3496040 1580563 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libQtCore-6df570dd.so.4.8.7
+python3 15705 jesus mem REG 8,18 195136 1580562 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libQtTest-1183da5d.so.4.8.7
+python3 15705 jesus mem REG 8,18 13562584 1580561 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libQtGui-903938cd.so.4.8.7
+python3 15705 jesus mem REG 8,18 537840 1580558 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libswscale-eff4f3f5.so.5.6.100
+python3 15705 jesus mem REG 8,18 618192 1580554 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libavutil-f2241b69.so.56.33.100
+python3 15705 jesus mem REG 8,18 2580592 1580553 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libavformat-d2497aa5.so.58.31.101
+python3 15705 jesus mem REG 8,18 13236792 1580555 /usr/local/lib/python3.5/dist-packages/cv2/.libs/libavcodec-2e35faff.so.58.55.100
+python3 15705 jesus mem REG 8,18 28877456 1325348 /usr/local/lib/python3.5/dist-packages/cv2/cv2.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 2809141 1325058 /usr/local/lib/python3.5/dist-packages/numpy/random/generator.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 220994 1325070 /usr/local/lib/python3.5/dist-packages/numpy/random/sfc64.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 306387 1325066 /usr/local/lib/python3.5/dist-packages/numpy/random/pcg64.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 372164 1325062 /usr/local/lib/python3.5/dist-packages/numpy/random/philox.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 817614 1325067 /usr/local/lib/python3.5/dist-packages/numpy/random/bit_generator.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 435096 1325064 /usr/local/lib/python3.5/dist-packages/numpy/random/mt19937.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 1913891 1325069 /usr/local/lib/python3.5/dist-packages/numpy/random/bounded_integers.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 1236047 1325065 /usr/local/lib/python3.5/dist-packages/numpy/random/common.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 2260340 1325059 /usr/local/lib/python3.5/dist-packages/numpy/random/mtrand.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 384692 1325160 /usr/local/lib/python3.5/dist-packages/numpy/fft/_pocketfft_internal.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 228016 795635 /usr/lib/x86_64-linux-gnu/libmpdec.so.2.4.2
+python3 15705 jesus mem REG 8,18 183008 1049877 /usr/lib/python3.5/lib-dynload/_decimal.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 876208 1325134 /usr/local/lib/python3.5/dist-packages/numpy/linalg/_umath_linalg.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 108832 1325137 /usr/local/lib/python3.5/dist-packages/numpy/linalg/lapack_lite.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 156624 1050390 /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 569297 1325204 /usr/local/lib/python3.5/dist-packages/numpy/core/_multiarray_tests.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 389440 927933 /usr/lib/OpenNI2/Drivers/libPSLink.so.0
+python3 15705 jesus mem REG 8,18 97056 1446845 /lib/x86_64-linux-gnu/libusb-1.0.so.0.1.0
+python3 15705 jesus mem REG 8,18 643664 927936 /usr/lib/OpenNI2/Drivers/libPS1080.so.0
+python3 15705 jesus mem REG 8,18 200728 927935 /usr/lib/OpenNI2/Drivers/libOniFile.so.0
+python3 15705 jesus mem REG 8,18 105192 927934 /usr/lib/OpenNI2/Drivers/libDummyDevice.so.0
+python3 15705 jesus mem REG 8,18 363264 796760 /usr/lib/x86_64-linux-gnu/libjpeg.so.8.0.2
+python3 15705 jesus mem REG 8,18 261168 798503 /usr/lib/libOpenNI2.so.0
+python3 15705 jesus mem REG 8,18 15920 1049902 /usr/lib/python3.5/lib-dynload/_multiprocessing.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 29552 1059900 /usr/lib/python3.5/lib-dynload/mmap.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 1728686 6297046 /home/jesus/.local/lib/python3.5/site-packages/_ruamel_yaml.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 1023960 1325111 /usr/local/lib/python3.5/dist-packages/numpy/.libs/libgfortran-ed201abd.so.3.0.0
+python3 15705 jesus mem REG 8,18 29724672 1325112 /usr/local/lib/python3.5/dist-packages/numpy/.libs/libopenblasp-r0-34a18dc3.3.7.so
+python3 15705 jesus mem REG 8,18 21298456 1325209 /usr/local/lib/python3.5/dist-packages/numpy/core/_multiarray_umath.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 74880 1050394 /usr/lib/python3.5/lib-dynload/_json.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 137400 1446732 /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+python3 15705 jesus mem REG 8,18 37616 1050388 /usr/lib/python3.5/lib-dynload/_lzma.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 66800 1446581 /lib/x86_64-linux-gnu/libbz2.so.1.0.4
+python3 15705 jesus mem REG 8,18 22000 1049869 /usr/lib/python3.5/lib-dynload/_bz2.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 29488 1049352 /usr/lib/python3.5/lib-dynload/_hashlib.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 2365952 1446848 /lib/x86_64-linux-gnu/libcrypto.so.1.0.0
+python3 15705 jesus mem REG 8,18 428384 1453408 /lib/x86_64-linux-gnu/libssl.so.1.0.0
+python3 15705 jesus mem REG 8,18 118744 1049353 /usr/lib/python3.5/lib-dynload/_ssl.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 126840 1442752 /lib/x86_64-linux-gnu/libudev.so.1.6.4
+python3 15705 jesus mem REG 8,18 42672 1059894 /usr/lib/python3.5/lib-dynload/_csv.cpython-35m-x86_64-linux-gnu.so
+python3 15705 jesus mem REG 8,18 10219008 793763 /usr/lib/locale/locale-archive
+python3 15705 jesus mem REG 8,18 1088952 1446735 /lib/x86_64-linux-gnu/libm-2.23.so
+python3 15705 jesus mem REG 8,18 104864 1446856 /lib/x86_64-linux-gnu/libz.so.1.2.8
+python3 15705 jesus mem REG 8,18 166032 1441797 /lib/x86_64-linux-gnu/libexpat.so.1.6.0
+python3 15705 jesus mem REG 8,18 10656 1446846 /lib/x86_64-linux-gnu/libutil-2.23.so
+python3 15705 jesus mem REG 8,18 14608 1446689 /lib/x86_64-linux-gnu/libdl-2.23.so
+python3 15705 jesus mem REG 8,18 1868984 1446665 /lib/x86_64-linux-gnu/libc-2.23.so
+python3 15705 jesus mem REG 8,18 138696 1446811 /lib/x86_64-linux-gnu/libpthread-2.23.so
+python3 15705 jesus mem REG 8,18 162632 1446637 /lib/x86_64-linux-gnu/ld-2.23.so
+python3 15705 jesus mem CHR 81,1 563 /dev/video1
+python3 15705 jesus DEL REG 0,26 1296 /dev/shm/0wD077
+python3 15705 jesus DEL REG 0,26 1273 /dev/shm/HDvFNp
+python3 15705 jesus DEL REG 0,26 1267 /dev/shm/JPUltH
+python3 15705 jesus DEL REG 0,26 1264 /dev/shm/xVY38Y
+python3 15705 jesus DEL REG 0,26 1258 /dev/shm/nNzOOg
+python3 15705 jesus DEL REG 0,26 1256 /dev/shm/ZEGEuy
+python3 15705 jesus DEL REG 0,26 1255 /dev/shm/Hoaex0
+python3 15705 jesus DEL REG 0,26 1215 /dev/shm/ju9Nzs
+python3 15705 jesus DEL REG 0,26 1206 /dev/shm/y0MoCU
+python3 15705 jesus DEL REG 0,26 1190 /dev/shm/2Y1ZEm
+python3 15705 jesus DEL REG 0,26 1169 /dev/shm/TMWBHO
+python3 15705 jesus DEL REG 0,26 962 /dev/shm/I1eeKg
+python3 15705 jesus DEL REG 0,26 961 /dev/shm/FTMQMI
+python3 15705 jesus DEL REG 0,26 956 /dev/shm/3pHtPa
+python3 15705 jesus DEL REG 0,26 955 /dev/shm/mEY6RC
+python3 15705 jesus DEL REG 0,26 954 /dev/shm/8V0KU4
+python3 15705 jesus DEL REG 0,26 948 /dev/shm/CBGpXw
+python3 15705 jesus DEL REG 0,26 944 /dev/shm/Bgg5ZY
+python3 15705 jesus DEL REG 0,26 937 /dev/shm/uEJL2q
+python3 15705 jesus DEL REG 0,26 936 /dev/shm/G5it5S
+python3 15705 jesus DEL REG 0,26 934 /dev/shm/Gk1b8k
+python3 15705 jesus DEL REG 8,18 3932933 /tmp/pymp-wjg9peb1/pym-15696-yph1mcrp
+python3 15705 jesus mem REG 8,18 26258 1051717 /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+python3 15705 jesus 0u CHR 136,2 0t0 5 /dev/pts/2
+python3 15705 jesus 1u CHR 136,2 0t0 5 /dev/pts/2
+python3 15705 jesus 2u CHR 136,2 0t0 5 /dev/pts/2
+python3 15705 jesus 3u REG 8,18 20480 3932933 /tmp/pymp-wjg9peb1/pym-15696-yph1mcrp (deleted)
+python3 15705 jesus 4u REG 8,18 20480 3932933 /tmp/pymp-wjg9peb1/pym-15696-yph1mcrp (deleted)
+python3 15705 jesus 5r CHR 1,3 0t0 6 /dev/null
+python3 15705 jesus 6w FIFO 0,12 0t0 257291 pipe
+python3 15705 jesus 7u netlink 0t0 257292 KOBJECT_UEVENT
+python3 15705 jesus 8r FIFO 0,12 0t0 257293 pipe
+python3 15705 jesus 9w FIFO 0,12 0t0 257293 pipe
+python3 15705 jesus 10r FIFO 0,12 0t0 257294 pipe
+python3 15705 jesus 11w FIFO 0,12 0t0 257294 pipe
+python3 15705 jesus 12u a_inode 0,13 0 11680 [timerfd]
+python3 15705 jesus 13r FIFO 0,12 0t0 257295 pipe
+python3 15705 jesus 14u netlink 0t0 258341 KOBJECT_UEVENT
+python3 15705 jesus 15w FIFO 0,12 0t0 257295 pipe
+python3 15705 jesus 16u a_inode 0,13 0 11680 [timerfd]
+python3 15705 jesus 17u netlink 0t0 254679 KOBJECT_UEVENT
+python3 15705 jesus 18r CHR 1,9 0t0 11 /dev/urandom
+python3 15705 jesus 19r FIFO 0,12 0t0 257299 pipe
+python3 15705 jesus 20w FIFO 0,12 0t0 257299 pipe
+python3 15705 jesus 21u a_inode 0,13 0 11680 [timerfd]
+python3 15705 jesus 22u unix 0x0000000000000000 0t0 257303 type=DGRAM
+python3 15705 jesus 23u CHR 81,1 0t0 563 /dev/video1
+python3 15705 jesus 26u CHR 189,7 0t0 562 /dev/bus/usb/001/008
+python3 15705 jesus 27u CHR 189,7 0t0 562 /dev/bus/usb/001/008

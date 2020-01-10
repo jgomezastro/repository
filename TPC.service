@@ -1,0 +1,13 @@
+[Unit]
+Description=Runs Terabee people counting software at launch
+After=network.target
+
+[Service]
+ExecStart=/bin/bash TPC.sh
+WorkingDirectory=/home/ub64/Terabee_people_counting
+StandardOutput=inherit
+StandardError=inherit
+User=ub64
+
+[Install]
+WantedBy=multi-user.target

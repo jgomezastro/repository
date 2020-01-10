@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from people_counting_depth_cam import main
+VERSION = "2.0.1"
+if __name__ == '__main__':
+ 	main()

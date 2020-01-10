@@ -1,0 +1,10 @@
+top - 10:37:20 up 9 min,  1 user,  load average: 2,09, 1,31, 0,69
+Tasks: 274 total,   2 running, 199 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  8,1 us,  2,1 sy,  0,1 ni, 89,3 id,  0,2 wa,  0,0 hi,  0,2 si,  0,0 st
+KiB Mem :  8045844 total,  3174136 free,  2308012 used,  2563696 buff/cache
+KiB Swap:  1000444 total,  1000444 free,        0 used.  4915332 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 4032 jesus     20   0 1519944 124956  47708 S  37,5  1,6   1:02.08 python3
+ 4023 jesus     20   0  588800  72680  41240 S  31,2  0,9   0:39.69 python3
+

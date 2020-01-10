@@ -1,0 +1,16 @@
+python3 8842 jesus  mem       REG               8,18 12866800  788017 /usr/local/lib/libopencv_core.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   467784  794357 /usr/local/lib/libopencv_flann.so.3.1.0
+python3 8842 jesus  mem       REG               8,18 26449016  794360 /usr/local/lib/libopencv_imgproc.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   868968  794363 /usr/local/lib/libopencv_ml.so.3.1.0
+python3 8842 jesus  mem       REG               8,18  2392208  794366 /usr/local/lib/libopencv_photo.so.3.1.0
+python3 8842 jesus  mem       REG               8,18  1802112  794369 /usr/local/lib/libopencv_video.so.3.1.0
+python3 8842 jesus  mem       REG               8,18  1665768  794375 /usr/local/lib/libopencv_imgcodecs.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   237760  794381 /usr/local/lib/libopencv_videoio.so.3.1.0
+python3 8842 jesus  mem       REG               8,18    29872  794384 /usr/local/lib/libopencv_highgui.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   941192  794394 /usr/local/lib/libopencv_features2d.so.3.1.0
+python3 8842 jesus  mem       REG               8,18  1664976  794397 /usr/local/lib/libopencv_calib3d.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   400816  796544 /usr/local/lib/libopencv_videostab.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   210384  794390 /usr/local/lib/libopencv_superres.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   489216  794387 /usr/local/lib/libopencv_objdetect.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   665664  796541 /usr/local/lib/libopencv_stitching.so.3.1.0
+python3 8842 jesus  mem       REG               8,18   283376  794378 /usr/local/lib/libopencv_shape.so.3.1.0

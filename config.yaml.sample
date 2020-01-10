@@ -1,0 +1,50 @@
+#This file contains parameters for multiple person counting using depth camera
+version: "2.0.1"
+counting_params_user:
+  reversed_counting_direction: false
+  camera_height: 2600
+  exclusion_zone: 600
+  in_area: #Points that define the IN area
+  - - 0
+    - 29
+  - - 79
+    - 29
+  - - 79
+    - 59
+  - - 0
+    - 59
+#counting_params_fixed:
+  #maximum_age: 10
+  #max_tracking_distance_px: 12 # For proximity tracker
+#counting_params_calculated:
+  #auto: true
+  #binarize_threshold: 25 # 15-30
+  #detect_threshold: 8 # 25 or 30
+  #min_area: 90 # check spreadsheet
+#background:
+  #nb_background_frame: 90
+  #bg_frame_interval: 3
+#noise_filter_params:
+  #window_size: 2 # For moving average (2-5)
+  #iterations_number: 1
+  #activate_filter: false
+  #kernel: 5
+  #depth_difference: 50
+  #area_checked: 50
+display_windows:
+  background: true
+  binarized: false
+  detected: false
+  visualization: true
+pushing_data:
+  enabled: false
+  push_url: "http://iot.teraranger.com/iot/push_occupancy?sensor_id=10&people_in="
+  sensor_id: 1
+  push_interval: 60
+logging:
+  reset_hour: "00:00"
+  #fps_window: 150
+record_frames:
+  on_counting_event: false
+miscs:
+  middle_pixel_check: true

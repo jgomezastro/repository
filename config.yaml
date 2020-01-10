@@ -1,0 +1,52 @@
+#This file contains parameters for multiple person counting using depth camera
+version: "2.0.1"
+counting_params_user:
+  reversed_counting_direction: false
+  camera_height: 2600
+  in_area: #Points that define the IN area
+  - - 0   
+    - 29
+  - - 79
+    - 29
+  - - 79
+    - 59
+  - - 0
+    - 59
+  #exclusion_height:  600  # height below which objects are not taken in the foreground
+
+#counting_params_fixed:
+  #maximum_age: 10   # how long does it take to an object to not be tracked anymore
+  #max_tracking_distance_px: 12 # For proximity tracker 
+#counting_params_calculated:
+  #auto: true   #???????????
+  #binarize_threshold: 25 # 15-30 minimum value of the pixel for being taken as binarized, minimum diference above the background  
+  #detect_threshold: 8 # 25 or 30   to be discovered when analizing the code   
+  #min_area: 90 # check spreadsheet   minimum area in square pixels to be detected 
+#background:
+  #nb_background_frame: 90  # number of frames taken for the initial background
+  #bg_frame_interval: 3      # every three frames, the background is updated
+#noise_filter_params:
+  #window_size: 2 # For moving average (2-5) over time the higher the number, the more frame you average together. the bigger the area and less resolution
+  #iterations_number: 1       # open morphology operations interations (2D filter)
+  #activate_filter: false      # bilateral filter image preprocessing
+  #kernel: 5                  # image preprocessing, before head control extraction
+  #depth_difference: 50        # bilateral filter image preprocessing
+  #area_checked: 50             # bilateral filter image preprocessing 
+display_windows:
+  background: false
+  binarized: false
+  detected: false
+  visualization: false
+pushing_data:
+  enabled: false              #
+  push_url: "http://iot.teraranger.com/iot/push_occupancy?sensor_id=10&people_in="      #
+  sensor_id: 1           #
+  push_interval: 60       #
+logging:
+  reset_hour: "00:00"      # the time the counter go back to zero
+  #fps_window: 150          # every 150 frames is taken the estimation of the average of fps
+  #restore_counts: false    # restart counts from the log file when starting the program
+record_frames:
+  on_counting_event: false       #?????????????????    data folder crashes when true
+miscs:
+  middle_pixel_check: false        #?????????????????   crashes when true

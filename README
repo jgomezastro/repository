@@ -1,0 +1,138 @@
+--> OpenNI driver:
+
+File: OpenNiDriver.py
+
+It uses PyOpenNI to read from the depth camera.
+In the __init__, if you set filename=None (default), it tries to
+read from the camera. Otherwise, if you set a filename, it
+reads from the file, assuming that it is a recording .oni file.
+It reads each next frame and outputs a numpy array (def read_data()).
+
+
+--> Record data using EVO:
+
+Branch:
+feature/recording
+
+Run:
+python my_record_buff.py
+
+It saves the frames 5 sec before and 5 sec after the EVO triggering.
+The frames are saved in a file .npz ('data/video%05d.npz' % a),
+where "a" is an int increasing if there is already the filename.
+If an EVO trigger is detected before the end of the 5 seconds,
+then the continuity is saved to a file ('data/video%05d_0.npz' % a)
+At the testing time, you have to concatenate the 2 (or more) files.
+
+
+--> Record data per 1 minute:
+
+Branch:
+feature/recording
+
+Run:
+python my_record.py
+
+It records frames from the camera continuously and it concatenates
+them along the 3rd axis. For each 1 minute, it saves the frames to
+a file named 'data/record_1min_*.npz' and cleans the buffer.
+The * corresponds to an int, which is increasing until the file name
+doesn't exist.
+
+
+--> Detect/Count people using a saved .npz file:
+
+Branch:
+feature/testing
+
+Run:
+python people_counting_depth_cam.py
+
+Inside the main, set the path of the file you want to test.
+At the loading of the video, it checks if there is a file with the
+same beginning as a name, following by an "_*.npz". It concatenates
+all the videos found with the same beginning. (For example:
+it concatenates the files: 'data/video00001.npz' and 'data/video00001_0.npz')
+This is because at the recording the continuity has been saved in the
+corresponding file (see "my_record_buff.py").
+During the running, you have to click on a key continuously to update
+the frames (this is because of the opencv cv2.imshow() and cv2.waitKey() -
+see at the end of the "try:" of the def run()).
+There is the possibility of renaming the .npz file, after the testing, in
+order to set the name to the ground truth "up*_down*_*.npz" (1st * is the
+number of persons that are going up, 2nd * is the number of persons that
+are going down and the 3rd * is an int increasing, while checking if there
+is already the corresponding filename.). The renamed file is saved in the
+directory data/dataset/. To rename a file, you have to put "Y" at the end
+of the running and answer to the "Up = " and "Down = " (see at except
+IndexError at def run()).
+
+
+--> Test all the files in the data/dataset/ directory:
+
+Branch:
+feature/testing
+
+Run:
+python test.py
+
+Remember to comment out all the lines concerning cv2.imshow() at the
+script MultiplePeopleCounter.py, so the 3 lines
+cv2.namedWindow("Depth", cv2.WINDOW_NORMAL); cv2.imshow("Depth", frame);
+cv2.waitKey() at the end of the "try:" of the def run().
+It compares the output of the detection with the file name, assuming
+that the file has saved with the correct name "up*_down*_*.npz" (see
+MultiplePeopleCounter.py).
+It prints the Accuracy (%).
+
+
+--> Record from camera and save to .npz file:
+
+Branch:
+feature/testing_live
+
+File:
+my_record.py
+
+It is used in the testing_live (MultiplePeopleCounter.py) to save
+each frame, for testing reasons.
+The def run() reads the new frame from the camera and saves it to 1 .npz (1 frame
+per .npz file). The frame is saved to the file 'data/record_1_%05d.npz' % a,
+where a is an int, which is increased, depending on the existing files.
+You can use concat_npz.py to concatenate (after) all the frames to 1 .npz file.
+
+
+--> Run live the people counting:
+
+Branch:
+feature/testing_live
+
+Run:
+python people_counting_depth_cam.py
+
+Like the same file at the feature/testing branch, but now you set filename=None,
+in order to run the people detection-counting directly using the camera.
+It prints when a detected person is going up or down (crossing the middle line).
+It also writes the above in a file "output.txt".
+It uses my_record.py (instead of OpenNiDriver.py directly), in order to save each
+frame at the same time, to use it for testing later. You can use OpenNiDriver.py,
+if you don't need to save the frames.
+You can use concat_npz.py to concatenate all the saved frames, named as
+'data/record_1_*.npz' to 1 .npz file. They are being concatenated along the 3rd
+axis. Then, you can test the .npz file using the script
+MultiplePeopleCounter.py at the branch feature/testing.
+
+
+--> Dataset - Gather data to test the algorithm:
+
+Branch:
+feature/testing
+
+Run:
+python people_counting_depth_cam.py
+
+See at the description above (branch: feature/testing). The files are saved as
+"data/dataset/up*_down*_*.npz".
+
+Download the created dataset at:
+https://drive.google.com/open?id=1OvGzIabkdKDvh0oW2bJkJ_JQMC4OT19M
