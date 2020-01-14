@@ -1,6 +1,6 @@
 # coding=utf-8
-import abc          ###### untouchable ???
-import cv2          ###### untouchable ???
+from abc import abstractmethod          ###### untouchable ???
+from cv2 import pointPolygonTest          ###### untouchable ???
 
 
 class CounterType(object):
@@ -49,7 +49,7 @@ class AbstractInOutCounter(object):
         self.count_in = 0
         self.count_out = 0
 
-    @abc.abstractmethod
+    @abstractmethod
     def update_count(self, tracked_object):
         """
         This function updates counts when a TrackedObject is updated,
@@ -70,7 +70,7 @@ class AbstractInOutCounter(object):
         for tracked_object in tracked_objects:
             self.update_count(tracked_object)
 
-    @abc.abstractmethod
+    @abstractmethod
     def get_final_count(self, tracked_object):
         """
         This function computes the final direction of an object and notifies
@@ -129,7 +129,7 @@ class AreaCounter(AbstractInOutCounter):
         """
         if len(self.area_polygon) < 3:
             return
-        res = cv2.pointPolygonTest(self.area_polygon, tracked_object.get_loc(),
+        res = pointPolygonTest(self.area_polygon, tracked_object.get_loc(),
                                    measureDist=False)     ######### The function determines whether the point is inside a contour, outside, or lies on an edge (or coincides with a vertex). It returns positive (inside), negative (outside), or zero (on an edge) value, correspondingly. When measureDist=false , the return value is +1, -1, and 0, respectively. Otherwise, the return value is a signed distance between the point and the nearest contour edge.
 
         # Add the object to the count list if first time

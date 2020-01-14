@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import abc
-
+from abc import ABCMeta
+from abc import abstractmethod
 
 class DetectorType(object):
     """
@@ -14,12 +14,12 @@ class AbstractDetector(object):
     """
     This abstract class is the base for any detector class.
     """
-    __metaclass__ = abc.ABCMeta
+    __metaclass__ = ABCMeta
 
     def __init__(self, min_area):
         self.min_area = min_area
 
-    @abc.abstractmethod
+    @abstractmethod
     def detect(self, frame, foreground_mask):
         """
         This function is the main function of the Detector class. It

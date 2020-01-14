@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import numpy as np
+from numpy import zeros
+from numpy import roll
 
 
 class RingBuffer(object):
@@ -17,7 +18,7 @@ class RingBuffer(object):
             lentgh (int): Third dimension of the buffer, this is the one
                 going to be rolled on
         """
-        self.data = np.zeros((h, w, length), dtype='uint16')
+        self.data = zeros((h, w, length), dtype='uint16')
 
     def extend(self, x):
         """
@@ -26,5 +27,5 @@ class RingBuffer(object):
         Params:
             x (np.Array): Element to be added to the buffer
         """
-        self.data = np.roll(self.data, -1, axis=2)
+        self.data = roll(self.data, -1, axis=2)
         self.data[:, :, -1] = x

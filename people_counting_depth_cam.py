@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
+from sys import argv
 
 import MultiplePeopleCounter as MPC
 
@@ -34,7 +34,7 @@ def main():
     """
 
     display_version()
-    counter = MPC.MultiplePeopleCounter.instantiate_counter_from_args(sys.argv)
+    counter = MPC.MultiplePeopleCounter.instantiate_counter_from_args(argv)
 
     if not counter:
         display_usage()

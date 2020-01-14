@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import functools
+from functools import reduce as reducee
 
 from ruamel.yaml import YAML              ###### untouchable ???
 yaml = YAML()
@@ -28,7 +28,7 @@ class ConfigSection(object):
             except AttributeError:
                 return None
 
-        return functools.reduce(_getattr, [self] + attr.split('.'))
+        return reducee(_getattr, [self] + attr.split('.'))
 
 
 def print_config_from_dict(cfg_dict, depth=0):

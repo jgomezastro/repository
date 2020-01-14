@@ -33,10 +33,10 @@ counting_params_user:
   #depth_difference: 50        # bilateral filter image preprocessing
   #area_checked: 50             # bilateral filter image preprocessing 
 display_windows:
-  background: false
-  binarized: false
-  detected: false
-  visualization: false
+  background: true
+  binarized: true
+  detected: true
+  visualization: true
 pushing_data:
   enabled: false              #
   push_url: "http://iot.teraranger.com/iot/push_occupancy?sensor_id=10&people_in="      #

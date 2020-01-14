@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import abc          ###### untouchable ???
+from abc import ABCMeta          ###### untouchable ???
+from abc import abstractmethod          ###### untouchable ???
 
-import cv2          ###### untouchable ???
+from cv2 import moments          ###### untouchable ???
+from cv2 import boundingRect
 
 from Person import Person            ###### untouchable ???
 
@@ -18,7 +20,7 @@ class AbstractTracker(object):
     """
     This abstract class is the base for any tracker class.
     """
-    __metaclass__ = abc.ABCMeta
+    __metaclass__ = ABCMeta
 
     def __init__(self, max_age):
         """
@@ -73,7 +75,7 @@ class AbstractTracker(object):
         for callback in self.on_object_updated_callbacks:
             callback(tracked_object)
 
-    @abc.abstractmethod
+    @abstractmethod
     def track_contours(self, contours):
         """
         This function is the main tracking function of the Tracking class. It
@@ -128,7 +130,7 @@ class GreedyTracker(AbstractTracker):
         for i in range(len(contours)):
             # Image moments help you to calculate some features like center
             # of mass of the object, area of the object
-            contour_moment = cv2.moments(contours[i])
+            contour_moment = moments(contours[i])
             # From this moments, you can extract useful data like area,
             # centroid etc.
             # Centroid is given by the relations, Cx=M10/M00 and Cy=M01/M00.
@@ -138,7 +140,7 @@ class GreedyTracker(AbstractTracker):
             # It is a straight rectangle, it doesn't consider the rotation
             # of the object.
             # So area of the bounding rectangle won't be minimum
-            x, y, w, h = cv2.boundingRect(contours[i])
+            x, y, w, h = boundingRect(contours[i])
 
             contour_not_matched = True
             for person in self.tracked_objects:
@@ -183,7 +185,7 @@ class ProximityTracker(AbstractTracker):
         for i in range(len(contours)):
             # Image moments help you to calculate some features like center
             # of mass of the object, area of the object
-            contour_moment = cv2.moments(contours[i])
+            contour_moment = moments(contours[i])
             # From this moments, you can extract useful data like area,
             # centroid etc.
             # Centroid is given by the relations, Cx=M10/M00 and Cy=M01/M00.
@@ -311,7 +313,7 @@ class ProximityTracker(AbstractTracker):
         # tracked person
         if len(contour_not_assigned) > 0:
             for cnt in contour_not_assigned:
-                contour_moment = cv2.moments(cnt)
+                contour_moment = moments(cnt)
                 cx = int(contour_moment['m10'] / contour_moment['m00'])
                 cy = int(contour_moment['m01'] / contour_moment['m00'])
                 self.tracked_objects.append(

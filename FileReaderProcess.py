@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-import time
+from time import time
+from time import sleep
 from multiprocessing import Process
-
-import numpy as np
+from numpy import load as loadd
+from numpy import frombuffer
 
 
 class FileReaderProcess(Process):
@@ -67,13 +68,13 @@ class FileReaderProcess(Process):
         """
         min_delay = 1.0 / float(self.playback_freq)
 
-        elapsed = time.time() - self.last_time_called
+        elapsed = time() - self.last_time_called
         to_be_waited = min_delay - elapsed
 
         if to_be_waited > 0:
-            time.sleep(to_be_waited)
+            sleep(to_be_waited)
 
-        self.last_time_called = time.time()
+        self.last_time_called = time()
 
     def next_frame(self):
         """
@@ -95,7 +96,7 @@ class FileReaderProcess(Process):
         to a shared array at a constant playback rate.
         """
         try:
-            file_data = np.load(self.filename)
+            file_data = loadd(self.filename)
             self.background = file_data['background']
             self.frame_buffer = file_data['video_data']
 
@@ -107,7 +108,7 @@ class FileReaderProcess(Process):
                 else:
                     frame = self.next_frame()
 
-                arr = np.frombuffer(self.shared_array.get_obj(),
+                arr = frombuffer(self.shared_array.get_obj(),
                                     dtype='I').reshape(60, 80)
                 arr[:] = frame
                 self.frame_available.set()

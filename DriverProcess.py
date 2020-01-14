@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 from multiprocessing import Process
-import time
-import _thread as threading    #################################  ONLY NECESSARY IF RECORDING (5)              
+#import time
+#import _thread as threading    #################################  ONLY NECESSARY IF RECORDING (5)              
 
-import numpy as np
+from numpy import sum as summ
+from numpy import zeros
+from numpy import ones_like
+from numpy import frombuffer
+from numpy import round as roundd
+from numpy import sqrt as sqrtt
+from numpy import percentile
 
-from Terabee3DcamDriver import OpenNiDriver               ###### untouchable ???
+#from Terabee3DcamDriver import OpenNiDriver               ###### untouchable ???
 from Driver3Dcam import OpenNi2Driver          ###### untouchable ???
 from RingBuffer import RingBuffer          ###### untouchable ???
-import openni          ###### untouchable ???
+#import openni          ###### untouchable ???
 #from memory_profiler import profile       ####################### adicionada por mi
 
 class DriverProcess(Process):
@@ -63,7 +69,7 @@ class DriverProcess(Process):
         False ---> OpenNI2
         """
         #OpenNI2 used as default  
-        self.openni_version = hasattr(openni,"_openni2")
+        self.openni_version = True
 
 
 
@@ -168,36 +174,24 @@ class DriverProcess(Process):
         """
         if(self.openni_version==True):
         	device = OpenNi2Driver(fps_window=self.driver_fps_window)
-        	print('')
-        	print('')
-        	print('')
         	print('OpenNi2Driver')
-        	print('')
-        	print('')
-        	print('')
         else:
         	device = OpenNiDriver(fps_window=self.driver_fps_window)   
-        	print('')
-        	print('')
-        	print('')
-        	print('OpenNiDriver')
-        	print('')
-        	print('')
-        	print('')     	
+        	print('OpenNiDriver') 	
         self.height = device.height
         self.width = device.width
         self.ring_buffer = RingBuffer(self.height, self.width,
                                       self.buffer_size)
         frame_number = 0
         chacha = device.wait_and_get_depth_frame()
-        background_frame = np.ones_like(chacha) * 65535    ####### 65535 is maximum of uint16
-        replace_value = int((np.sum(chacha) / np.sum(chacha) != 0)) *66   ######### TO BE CHECKED!
+        background_frame = ones_like(chacha) * 65535    ####### 65535 is maximum of uint16
+        replace_value = int((summ(chacha) / summ(chacha) != 0)) *66   ######### TO BE CHECKED!
         print("[Driver] Replacing bad values with {}".format(replace_value))
 
         print("[Driver] Estimating background from {} " \
               "frames".format(self.nb_background_frame))
-        mean = np.zeros(chacha.shape)
-        stdev = np.zeros(chacha.shape)
+        mean = zeros(chacha.shape)
+        stdev = zeros(chacha.shape)
 
         try:
             while not self.cancel.value:
@@ -212,7 +206,7 @@ class DriverProcess(Process):
                 if self.background_ready:
                     # Synchronized write access to shared array
                     # with self.shared_array.get_lock():
-                    arr = np.frombuffer(self.shared_array.get_obj(),
+                    arr = frombuffer(self.shared_array.get_obj(),
                                         dtype='I').reshape(self.height,
                                                            self.width)
                     arr[:] = frame
@@ -240,18 +234,20 @@ class DriverProcess(Process):
                         stdev += (frame - mean) ** 2
                         if (frame_number == (self.nb_background_frame*2)):
                             stdev = stdev / self.nb_background_frame
-                            stdev = np.round(np.sqrt(stdev), 0)
+                            stdev = roundd(sqrtt(stdev), 0)
                             # Extract values for parameters estimation
                             self.middle_pixel_value = mean[int(self.height / 2)][
                                 int(self.width / 2)]
-                            self.percentile_stdev = np.percentile(stdev, 97)
+
+
+                            self.percentile_stdev = percentile(stdev, 97)      
 
 
 
 
 
                             self.compute_parameters()
-                            arr = np.frombuffer(self.shared_array.get_obj(),
+                            arr = frombuffer(self.shared_array.get_obj(),
                                                 dtype='I').reshape(self.height,
                                                                    self.width)
                             arr[:] = self.background

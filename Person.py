@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import time
+from time import time
 
 
 class TrackedObject(object):
@@ -36,7 +36,7 @@ class TrackedObject(object):
         self.y = y
         self.tracks = []
 
-        self.created_at = time.time()
+        self.created_at = time()
 
     def update_location(self, xn, yn):
         """

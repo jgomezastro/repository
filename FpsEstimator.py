@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import time
+from time import time
 
 
 class FpsEstimator(object):
@@ -16,7 +16,7 @@ class FpsEstimator(object):
             print_prefix (str): String to display before printing fps value
         """
         # Variables used for fps estimation
-        self.last_fps_timestamp = time.time()
+        self.last_fps_timestamp = time()
         self.fps_window = window
         self.fps_frame_count = 0
         self.fps = initial_value
@@ -31,7 +31,7 @@ class FpsEstimator(object):
         if self.fps_frame_count < self.fps_window:
             self.fps_frame_count += 1
         else:
-            current_time = time.time()
+            current_time = time()
             diff = current_time - self.last_fps_timestamp
             self.last_fps_timestamp = current_time
 

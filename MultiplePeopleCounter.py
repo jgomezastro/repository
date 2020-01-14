@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
-import time
-import datetime
-import csv
+
+from time import time as timee
+from time import strftime
+from datetime import time as ttime
+from datetime import timedelta
+from datetime import datetime
+from datetime import date
+from csv import writer as writerr
+from csv import reader as readerr
 from collections import deque    ####### collections ---> specialized container datatypes
                                  ####### deque       ---> list-like container with fast appends and pops on either end
                                  #######                  Returns a new deque object initialized left-to-right 
@@ -31,18 +37,33 @@ import multiprocessing as mp     ####### multiprocessing: a package that support
                                  #######                  execution of a function across multiple input values, distributing 
                                  #######                  the input data across processes (data parallelism).
 
-import _thread as threading      ####### _thread: This module provides low-level primitives for working with multiple threads
+from _thread import start_new_thread      ####### _thread: This module provides low-level primitives for working with multiple threads
                                  #######          (also called light-weight processes or tasks) — multiple threads of control 
                                  #######          sharing their global data space. For synchronization, simple locks (also 
                                  #######          called mutexes or binary semaphores) are provided. The threading module 
                                  #######          provides an easier to use and higher-level threading API built on top of 
                                  #######          this module.
 
-import requests                  ####### requests: Make a request to a web page, and print the response text:
-import glob                      ####### to locate files*
-import os                        ####### to locate files*
+from requests import get                 ####### requests: Make a request to a web page, and print the response text:
+from requests import exceptions
 
-import numpy as np               ####### NumPy is the fundamental package for scientific computing with Python. It contains 
+from glob import glob                      ####### to locate files*
+from os import path                        ####### to locate files*
+
+#import numpy as np               ####### NumPy is the fundamental package for scientific computing with Python. It contains 
+from numpy import zeros_like
+from numpy import zeros
+from numpy import ones
+from numpy import array
+from numpy import uint8
+from numpy import where
+from numpy import prod
+from numpy import nanmin
+from numpy import nan
+from numpy import frombuffer
+from numpy import copy
+from numpy import float as floatt
+from numpy import max as maxx
                                  ####### among other things:
                                  ####### * a powerful N-dimensional array object
                                  ####### * a powerful N-dimensional array objectsophisticated (broadcasting) functions
@@ -54,7 +75,38 @@ import numpy as np               ####### NumPy is the fundamental package for sc
                                  ####### This allows NumPy to seamlessly and speedily integrate with a wide variety of 
                                  ####### databases.
 
-import cv2                       ####### opencv2
+#import cv2                       ####### opencv2
+from cv2 import FONT_HERSHEY_SIMPLEX
+from cv2 import morphologyEx
+from cv2 import MORPH_OPEN
+from cv2 import MORPH_CLOSE
+from cv2 import __version__
+from cv2 import findContours
+from cv2 import RETR_EXTERNAL
+from cv2 import CHAIN_APPROX_SIMPLE
+from cv2 import contourArea
+from cv2 import drawContours
+from cv2 import minMaxLoc
+from cv2 import pointPolygonTest
+from cv2 import cvtColor
+from cv2 import COLOR_GRAY2RGB
+from cv2 import putText
+from cv2 import LINE_AA
+from cv2 import LINE_8
+from cv2 import EVENT_FLAG_CTRLKEY
+from cv2 import boundingRect
+from cv2 import rectangle
+from cv2 import circle
+from cv2 import line as linee
+from cv2 import waitKey
+from cv2 import setMouseCallback
+from cv2 import EVENT_LBUTTONUP
+from cv2 import EVENT_FLAG_CTRLKEY
+from cv2 import namedWindow
+from cv2 import WINDOW_NORMAL
+from cv2 import moveWindow
+from cv2 import imshow
+from cv2 import destroyAllWindows
 
 from Person import TrackedObject             ###### 
 from DriverProcess import DriverProcess          ###### parameter computation or estimation inside, initial background
@@ -106,9 +158,9 @@ class MultiplePeopleCounter(object):
         # General variables
         self.line_edit_mode = False      
         self.first_click = False     
-        self.font = cv2.FONT_HERSHEY_SIMPLEX
+        self.font = FONT_HERSHEY_SIMPLEX
         self.max_p_age = 10
-        self.in_area_points = np.array([[0, int(self.height / 2)],
+        self.in_area_points = array([[0, int(self.height / 2)],
                                         [self.width-1, int(self.height/2)],
                                         [self.width-1, self.height-1],
                                         [0, self.height-1]])
@@ -150,19 +202,19 @@ class MultiplePeopleCounter(object):
                         "={}&count_in={}&count_out={} "
         self.sensor_id = 1
         self.push_interval = 60        ######### sec
-        self.last_push = time.time()
+        self.last_push = timee()
 
         # Logging parameters
         self.log_counting_events = True
-        self.reset_hour = datetime.time(00, 00)
-        self.next_reset = datetime.datetime.today()
+        self.reset_hour = ttime(00, 00)
+        self.next_reset = datetime.today()
         self.outfile = None
         self.restore_counts = True
 
         # Background parameters
-        self.background = np.zeros((self.height, self.width), np.uint8)
-        self.background_intermediate = np.ones((self.height, self.width),
-                                               np.float) * 255
+        self.background = zeros((self.height, self.width), uint8)
+        self.background_intermediate = ones((self.height, self.width),
+                                               floatt) * 255
         self.bg_frame_interval = 3  # Frame interval of background update
         self.bg_threshold = 10  # Minimal difference needed to tigger          ######### btw [0,255]
         # background update
@@ -223,7 +275,7 @@ class MultiplePeopleCounter(object):
 
         # Create shared variables and processes
         self.shared_array_dim = (self.height, self.width)
-        self.shared_array = mp.Array('I', int(np.prod(self.shared_array_dim)))
+        self.shared_array = mp.Array('I', int(prod(self.shared_array_dim)))
         self.stop = mp.Value('i', False)
         self.device_ready = mp.Event()
         self.recording_trigger_event = mp.Event()
@@ -310,7 +362,7 @@ class MultiplePeopleCounter(object):
                                "counting_params_user.camera_height")
         self.map_config_params("in_area_points",
                                "counting_params_user.in_area",
-                               lambda counter, value: np.array(value))
+                               lambda counter, value: array(value))
         self.map_config_params("exclusion_height",
                                "counting_params_user.exclusion_height")
 
@@ -367,7 +419,7 @@ class MultiplePeopleCounter(object):
         self.map_config_params("reset_hour",
                                "logging.reset_hour",
                                lambda counter, value:
-                               datetime.datetime.strptime(value,
+                               datetime.strptime(value,
                                                           "%H:%M").time())
         self.map_config_params("restore_counts",
                                "logging.restore_counts")
@@ -404,10 +456,10 @@ class MultiplePeopleCounter(object):
         """
         This function creates a csv file in the /logs folder.
         """
-        filename = time.strftime("logs/counting_results_%Y-%m-%d.csv")
+        filename = strftime("logs/counting_results_%Y-%m-%d.csv")
         try:
             self.outfile = open(filename, "a+")
-            self.csvfile = csv.writer(self.outfile, dialect='excel')
+            self.csvfile = writerr(self.outfile, dialect='excel')
             self.csvfile.writerow(["Time", "In", "Out"])
             print("[Counter] Log file successfully created")
         except (IOError, OSError) as error:
@@ -433,7 +485,7 @@ class MultiplePeopleCounter(object):
         if self.log_counting_events:
             if self.csvfile is not None:
                 try:
-                    self.csvfile.writerow([time.time(),
+                    self.csvfile.writerow([timee(),
                                         self.get_count_in(),
                                         self.get_count_out()])
                     self.outfile.flush()  # Force flushing after every log line
@@ -444,11 +496,11 @@ class MultiplePeopleCounter(object):
         row_index = 0
         data = []
         if self.restore_counts:
-            file_list = glob.glob('logs/*.csv')
-            latest_file = max(file_list, key=os.path.getctime)
-            if datetime.date.fromtimestamp(os.path.getctime(latest_file)) == datetime.date.today():
+            file_list = glob('logs/*.csv')
+            latest_file = max(file_list, key=path.getctime)
+            if date.fromtimestamp(path.getctime(latest_file)) == date.today():
                 with open(latest_file, "r") as last_log:
-                    reader = csv.reader((x.replace('\0', '') for x in last_log), delimiter=',')
+                    reader = readerr((x.replace('\0', '') for x in last_log), delimiter=',')
                     for row in reader:
                         if row:
                             row_index += 1
@@ -482,13 +534,13 @@ class MultiplePeopleCounter(object):
         This function checks if the daily reset needs to be performed and
         schedules the next reset time.
         """
-        now = datetime.datetime.today()
+        now = datetime.today()
         if now > self.next_reset and not self.first_reset:
             self.push_data_interval()  # Pushing data just before reset
             print("[Counter] Resetting counter...")
             self.daily_reset()
             print("[Counter] Counter successfully reset")
-            self.next_reset = self.next_reset + datetime.timedelta(days=1)
+            self.next_reset = self.next_reset + timedelta(days=1)
         elif self.first_reset:
             if now.time() < self.reset_hour:
                 self.next_reset = self.next_reset.replace(
@@ -498,7 +550,7 @@ class MultiplePeopleCounter(object):
                 self.next_reset = self.next_reset.replace(
                     hour=self.reset_hour.hour, minute=self.reset_hour.minute,
                     second=0)
-                self.next_reset = self.next_reset + datetime.timedelta(days=1)
+                self.next_reset = self.next_reset + timedelta(days=1)
             self.first_reset = False
 #    @profile
     def push_data_interval(self):
@@ -507,7 +559,7 @@ class MultiplePeopleCounter(object):
         performed
         """
         if self.push_count_to_internet and not self.playback:
-            current_time = time.time()
+            current_time = timee()
             if current_time > self.last_push + self.push_interval:
                 # Publish people data every interval
                 self.async_push()
@@ -518,7 +570,7 @@ class MultiplePeopleCounter(object):
         This function wraps the asynchronous implementation of the data
         pushing.
         """
-        threading.start_new_thread(self.push_data, ())
+        start_new_thread(self.push_data, ())
 #    @profile
     def push_data(self):
         """
@@ -526,24 +578,24 @@ class MultiplePeopleCounter(object):
         """
         try:
             print("[Counter] Pushing data to server...")
-            requests.get(self.push_url.format(self.sensor_id,
+            get(self.push_url.format(self.sensor_id,
                                               self.get_count_in(),
                                               self.get_count_out()),
                          timeout=10.0)
             print("[Counter] Data pushed!")
 
-        except requests.exceptions.ConnectionError as errc:
+        except exceptions.ConnectionError as errc:
             print("Error Connecting:", errc)
-        except requests.exceptions.Timeout as errt:
+        except exceptions.Timeout as errt:
             print("Timeout Error:", errt)
-        except requests.exceptions.RequestException as err:
+        except exceptions.RequestException as err:
             print("Requests Exception:", err)
 #    @profile
     def image_pre_processing(self, depth_array):        ############# Question about how it works?
         """
         This function applies filters and scaling to a depth array.      
         Params:
-            depth_array (np.Array): Depth array to pre-process
+            depth_array (array): Depth array to pre-process
         """
 
         if self.window_size > 1:
@@ -559,15 +611,15 @@ class MultiplePeopleCounter(object):
         depth_array_norm = (
                 self.filtered_array * self.max_uint8 /
                 self.scaling_factor).astype(
-            np.uint8)
+            uint8)
 
-        if self.activate_filter:
-            depth_array_norm[
-                depth_array_norm == 0] = 255 - self.binarize_threshold
-            depth_array_norm = cv2.bilateralFilter(depth_array_norm,
-                                                   self.kernel,
-                                                   self.depth_difference,
-                                                   self.area_checked)
+#        if self.activate_filter:
+#            depth_array_norm[
+#                depth_array_norm == 0] = 255 - self.binarize_threshold
+#            depth_array_norm = cv2.bilateralFilter(depth_array_norm,
+#                                                   self.kernel,
+#                                                   self.depth_difference,
+#                                                   self.area_checked)
 
         return depth_array_norm
 #    @profile
@@ -577,23 +629,23 @@ class MultiplePeopleCounter(object):
         pixels that are below a defined threshold above the estimated
         background.
         Params:
-            frame (np.Array): Depth array to binarize
+            frame (array): Depth array to binarize
         Returns:
-            Foreground mask as np.Array
+            Foreground mask as array
         """
-        bin_frame = np.zeros_like(frame)
+        bin_frame = zeros_like(frame)
 
         exclusion_threshold = int((self.camera_height - self.exclusion_height) * self.max_uint8 / self.scaling_factor)
 
-        bin_frame[np.where(
+        bin_frame[where(
             (frame < self.background - self.binarize_threshold) &
             (self.background >= self.binarize_threshold) &
             (frame < exclusion_threshold))] = self.max_uint8
-        bin_frame[np.where(frame == 0)] = 0
+        bin_frame[where(frame == 0)] = 0
 
         # kernel (3,3), iterations=2 if heavy noise
-        bin_frame = cv2.morphologyEx(bin_frame, cv2.MORPH_OPEN,
-                                     np.ones((3, 3), np.uint8),
+        bin_frame = morphologyEx(bin_frame, MORPH_OPEN,
+                                     ones((3, 3), uint8),
                                      iterations=self.iterations_number)
 
         return bin_frame
@@ -610,7 +662,7 @@ class MultiplePeopleCounter(object):
         """
         This function updates the background estimation from a depth image.
         Params:
-            depth_array (np.Array): Depth array used to update background
+            depth_array (array): Depth array used to update background
         """
         grow_factor = self.bg_growth_rate * self.bg_frame_interval      ####### units bg_growth_rate
         decay_factor = self.bg_decay_rate * self.bg_frame_interval      ####### "  "  " _decay_rate
@@ -624,7 +676,7 @@ class MultiplePeopleCounter(object):
         # the camera than the background,
         # in that case we add the difference multiplied by the growth rate
         # to the background
-        self.background_intermediate = np.where(
+        self.background_intermediate = where(
             (depth_array <= self.background_intermediate -
                 self.bg_threshold) & (depth_array != 0),
             self.background_intermediate + grow_factor * (
@@ -633,14 +685,14 @@ class MultiplePeopleCounter(object):
         # In the next step we check if the current depth array is further
         # away from to the camera than the background,
         # in that case we subtract the difference from the background
-        self.background_intermediate = np.where(
+        self.background_intermediate = where(
             (depth_array >= self.background_intermediate +
                 self.bg_threshold) & (depth_array != 255),
             self.background_intermediate + decay_factor * (
                 depth_array - self.background_intermediate),
             self.background_intermediate)
         self.background[:] = self.background_intermediate
-        self.background.astype(np.uint8)
+        self.background.astype(uint8)
 #    @profile
     def head_contours_extraction(self, frame, binarized_frame):
         """
@@ -648,68 +700,68 @@ class MultiplePeopleCounter(object):
         extracts heads locations and contours but also distinguishes between
         two people that are close or even touching.
         Params:
-            frame (np.Array): Current depth frame
-            binarized_frame (np.Array): Foreground mask
+            frame (array): Current depth frame
+            binarized_frame (array): Foreground mask
         Returns:
             head_contours (list): List of detected contours
-            detected * frame (np.Array): Depth frame masked from detected
+            detected * frame (array): Depth frame masked from detected
                 contours
             contours_minimas (list): list of each contour minimum
         """
         head_contours = []
         contours_minima = []
         minima_values = []
-        detected = np.zeros(frame.shape, np.uint8)
+        detected = zeros(frame.shape, uint8)
 
         # Compute foreground
-        foreground = np.zeros(frame.shape, np.uint8)
+        foreground = zeros(frame.shape, uint8)
         foreground[:] = (binarized_frame / self.max_uint8) * frame
         # We change the 0 to 255 because 0 means invalid and not closer
         foreground[foreground == 0] = self.max_uint8
-        foreground = cv2.morphologyEx(foreground, cv2.MORPH_CLOSE, None,
+        foreground = morphologyEx(foreground, MORPH_CLOSE, None,
                                       iterations=1)
 
-        level = np.nanmin(np.where(foreground != 0, foreground, np.nan))
-        max_level = np.max(foreground)
+        level = nanmin(where(foreground != 0, foreground, nan))
+        max_level = maxx(foreground)
 
         while (level + self.detect_threshold) < max_level:
-            current_slice = np.zeros(frame.shape, np.uint8)
+            current_slice = zeros(frame.shape, uint8)
             current_slice[foreground < level] = 1.0 ##### potential optimization
 
             # Find contours
-            if(cv2.__version__[0]!='4'):
-                (_, contours, _) = cv2.findContours(current_slice,
-                                                cv2.RETR_EXTERNAL,
-                                                cv2.CHAIN_APPROX_SIMPLE)
-            else:
-                (contours, _) = cv2.findContours(current_slice,
-                                                cv2.RETR_EXTERNAL,
-                                                cv2.CHAIN_APPROX_SIMPLE)
+#            if(cv2.__version__[0]!='4'):
+#            (_, contours, _) = cv2.findContours(current_slice,
+#                                            cv2.RETR_EXTERNAL,
+#                                            cv2.CHAIN_APPROX_SIMPLE)
+#            else:
+            (contours, _) = findContours(current_slice,
+                                         RETR_EXTERNAL,
+                                         CHAIN_APPROX_SIMPLE)
 
-            sized_contours = [(cnt, cv2.contourArea(cnt)) for cnt in contours
-                              if cv2.contourArea(cnt) > self.min_area]
+            sized_contours = [(cnt, contourArea(cnt)) for cnt in contours
+                              if contourArea(cnt) > self.min_area]
 
             for contour in sized_contours:
                 # Add contour to detected_mask
-                contour_mask = np.zeros(frame.shape, np.uint8)
-                cv2.drawContours(contour_mask, [contour[0]], -1, 1, -1)
+                contour_mask = zeros(frame.shape, uint8)
+                drawContours(contour_mask, [contour[0]], -1, 1, -1)
 
                 extracted_foreground = frame * contour_mask
                 extracted_foreground[
                     extracted_foreground == 0] = self.max_uint8
 
-                a, b, min_loc, c = cv2.minMaxLoc(extracted_foreground)
+                a, b, min_loc, c = minMaxLoc(extracted_foreground)
 
                 if len(sized_contours) > len(contours_minima):
                     if len(head_contours) == 0:
                         contours_minima.append(min_loc)
                         minima_values.append(a)
                         head_contours.append(contour[0])
-                        cv2.drawContours(detected, [contour[0]], -1, 1, -1)     # MAYBE REMOVED
+                        drawContours(detected, [contour[0]], -1, 1, -1)     # MAYBE REMOVED
                     else:
                         inside_count = 0
                         for old_min in contours_minima:
-                            dist = cv2.pointPolygonTest(contour[0], old_min,
+                            dist = pointPolygonTest(contour[0], old_min,
                                                         False)
                             if dist >= 0:
                                 inside_count += 1
@@ -723,7 +775,7 @@ class MultiplePeopleCounter(object):
                         else:
                             head_contours[index_to_replace] = contour[0]
 
-                    cv2.drawContours(detected, [contour[0]], -1, 1, -1)     ####### double draw contours?
+                    drawContours(detected, [contour[0]], -1, 1, -1)     ####### double draw contours?
             level += self.detect_threshold
         return head_contours, detected * frame, contours_minima
 #    @profile
@@ -735,7 +787,7 @@ class MultiplePeopleCounter(object):
             person (Person): Person that triggered the OUT event
         """
         print("[Counter] ID: {} counted out at {}".format(person.id,
-                                                          time.strftime("%c")))
+                                                          strftime("%c")))
         if not self.playback:
             self.write_count_to_log()
 #    @profile
@@ -746,7 +798,7 @@ class MultiplePeopleCounter(object):
             person (Person): Person that triggered the IN event
         """
         print("[Counter] ID: {} counted in at {}".format(person.id,
-                                                         time.strftime("%c")))
+                                                         strftime("%c")))
         if not self.playback:
             self.write_count_to_log()
 #    @profile
@@ -758,7 +810,7 @@ class MultiplePeopleCounter(object):
         """
         if self.record_on_counting_event:
             if not self.playback:
-                self.trigger_record(time.time() - person.created_at)
+                self.trigger_record(timee() - person.created_at)
 #    @profile
     def trigger_record(self, duration):
         """
@@ -773,36 +825,36 @@ class MultiplePeopleCounter(object):
         """
         This function adds counting information on top of a depth array.
         Params:
-            frame (np.Array): Depth frame used for visualization
+            frame (array): Depth frame used for visualization
             contours (list): List of detected contours
             minima (list): List of contours minima
         Returns:
-            rgb_frame (np.Array): RGB frame to be displayed
+            rgb_frame (array): RGB frame to be displayed
         """
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2RGB)
+        rgb_frame = cvtColor(frame, COLOR_GRAY2RGB)
 
         if self.line_edit_mode:
-            cv2.putText(rgb_frame, "EDIT",
+            putText(rgb_frame, "EDIT",
                         (int(0.35 * self.width), int(0.15 * self.height)),
                         self.font, 0.3,
-                        (255, 255, 255), 1, cv2.LINE_AA)
+                        (255, 255, 255), 1, LINE_AA)
 
             # Display counting area
             if len(self.counter.area_polygon) > 0:
-                rgb_frame = cv2.drawContours(rgb_frame, [self.counter.area_polygon], -1,
+                rgb_frame = drawContours(rgb_frame, [self.counter.area_polygon], -1,
                                              self.visualization_colour, 1,
-                                             cv2.LINE_8)
+                                             LINE_8)
             return rgb_frame
 
         # Draws a bounding rectangle for each contour
         for i in range(len(contours)):
-            x, y, w, h = cv2.boundingRect(contours[i])
-            cv2.rectangle(rgb_frame, (x, y), (x + w, y + h),
+            x, y, w, h = boundingRect(contours[i])
+            rectangle(rgb_frame, (x, y), (x + w, y + h),
                           self.visualization_colour, 1)
 
         # Draw the minim of each contour
         for minimum in minima:
-            cv2.circle(rgb_frame, minimum, 2, (255, 0, 185), -1)
+            circle(rgb_frame, minimum, 2, (255, 0, 185), -1)
 
         # Display the tracking ID (white is active and red is untracked) and
         # trajectory
@@ -811,48 +863,48 @@ class MultiplePeopleCounter(object):
                 c = (255, 255, 255)
             else:
                 c = (0, 0, 255)
-            cv2.putText(rgb_frame, str(person.id), (person.x, person.y),
-                        self.font, 0.3, c, 1, cv2.LINE_AA)
+            putText(rgb_frame, str(person.id), (person.x, person.y),
+                        self.font, 0.3, c, 1, LINE_AA)
 
             for point1, point2 in zip(person.tracks, person.tracks[1:]):
                 color = ((person.id * 561) % 255,
                          (person.id * 1105) % 255,
                          (person.id * 1729) % 255)
-                cv2.line(rgb_frame, point1, point2, color, 1)
+                linee(rgb_frame, point1, point2, color, 1)
 
         # Display counting area
         if len(self.counter.area_polygon) > 0:
-            rgb_frame = cv2.drawContours(rgb_frame, [self.counter.area_polygon], -1,
+            rgb_frame = drawContours(rgb_frame, [self.counter.area_polygon], -1,
                                          self.visualization_colour, 1,
-                                         cv2.LINE_8)
+                                         LINE_8)
 
         # Display counts
         str_out = 'OUT: ' + str(self.get_count_out())
         str_in = 'IN: ' + str(self.get_count_in())
         if self.reversed_counting_direction:
-            cv2.putText(rgb_frame, str_in,
+            putText(rgb_frame, str_in,
                         (int(0.025 * self.width), int(0.15 * self.height)),
                         self.font, 0.25,
-                        self.visualization_colour, 1, cv2.LINE_AA)
-            cv2.putText(rgb_frame, str_out,
+                        self.visualization_colour, 1, LINE_AA)
+            putText(rgb_frame, str_out,
                         (int(0.025 * self.width), int(0.95 * self.height)),
                         self.font, 0.25,
-                        self.visualization_colour, 1, cv2.LINE_AA)
+                        self.visualization_colour, 1, LINE_AA)
         else:
-            cv2.putText(rgb_frame, str_out,
+            putText(rgb_frame, str_out,
                         (int(0.025 * self.width), int(0.15 * self.height)),
                         self.font, 0.25,
-                        self.visualization_colour, 1, cv2.LINE_AA)
-            cv2.putText(rgb_frame, str_in,
+                        self.visualization_colour, 1, LINE_AA)
+            putText(rgb_frame, str_in,
                         (int(0.025 * self.width), int(0.95 * self.height)),
                         self.font, 0.25,
-                        self.visualization_colour, 1, cv2.LINE_AA)
+                        self.visualization_colour, 1, LINE_AA)
 
         # Display frame per second
-        cv2.putText(rgb_frame, str(round(self.fps_estimator.get_fps(), 1)),
+        putText(rgb_frame, str(round(self.fps_estimator.get_fps(), 1)),
                     (int(0.70 * self.width), int(0.15 * self.height)),
                     self.font, 0.25,
-                    self.visualization_colour, 1, cv2.LINE_AA)
+                    self.visualization_colour, 1, LINE_AA)
 
         return rgb_frame
 #################################################################################################################################################
@@ -866,7 +918,7 @@ class MultiplePeopleCounter(object):
         Params:
             timeout (int): Time in sec before aborting the wait
         Returns:
-            depth_array (np.Array): Depth frame received from frame producer
+            depth_array (array): Depth frame received from frame producer
         """
         # Wait for the device to be ready
         if (not self.pause or self.get_once) and \
@@ -874,10 +926,10 @@ class MultiplePeopleCounter(object):
 
             # Create numpy array on top of shared memory buffer, then we
             # make a copy to freeze the frame
-            array_from_buffer = np.frombuffer(self.shared_array.get_obj(),
+            array_from_buffer = frombuffer(self.shared_array.get_obj(),
                                               dtype='I').reshape(
                 self.shared_array_dim)
-            depth_array = np.copy(array_from_buffer)
+            depth_array = copy(array_from_buffer)
 
             # We signal the driver that the frame has been taken and a new
             # one can be written to the buffer
@@ -897,7 +949,7 @@ class MultiplePeopleCounter(object):
 
         if any_window:
             # Waiting for key
-            key = cv2.waitKey(1)
+            key = waitKey(1)
             if key & 0xEFFFFF == 27:  # "ESC"
                 raise KeyboardInterrupt()
             elif key & 0xEFFFFF == 114:  # "r"
@@ -929,11 +981,11 @@ class MultiplePeopleCounter(object):
                             self.cfg.save_config()
                     except Exception as e:
                         print(e)
-                    cv2.setMouseCallback(WinName.VIS, lambda *args : None)
+                    setMouseCallback(WinName.VIS, lambda *args : None)
                 else:
                     self.line_edit_mode = True
                     self.first_click = True
-                    cv2.setMouseCallback(WinName.VIS, self.on_mouse_event)
+                    setMouseCallback(WinName.VIS, self.on_mouse_event)
 ##    @profile
     def on_mouse_event(self, event, x, y, flags, *params):
         """
@@ -945,21 +997,21 @@ class MultiplePeopleCounter(object):
             flags (int): additionnal flags such as other button/key pressed
 
         """
-        if event == cv2.EVENT_LBUTTONUP:
-            if flags & cv2.EVENT_FLAG_CTRLKEY:
+        if event == EVENT_LBUTTONUP:
+            if flags & EVENT_FLAG_CTRLKEY:
                 if self.first_click:
                     self.first_click = False
                 new_line = self.counter.area_polygon.tolist()
                 if len(new_line) > 0:
                     new_line.pop()
-                self.counter.area_polygon = np.array(new_line)
+                self.counter.area_polygon = array(new_line)
             else:
                 if self.first_click:
-                    self.counter.area_polygon = np.array([])
+                    self.counter.area_polygon = array([])
                     self.first_click = False
                 new_line = self.counter.area_polygon.tolist()
                 new_line.append([x, y])
-                self.counter.area_polygon = np.array(new_line)
+                self.counter.area_polygon = array(new_line)
 #    @profile
     def run(self):
         """
@@ -1020,25 +1072,25 @@ class MultiplePeopleCounter(object):
                         self.background_recalculation(preprocessed_frame)
 
                 if self.display_visualization:
-                    cv2.namedWindow(WinName.VIS, cv2.WINDOW_NORMAL)
+                    namedWindow(WinName.VIS, WINDOW_NORMAL)
                     if n_frame == 1:
-                        cv2.moveWindow(WinName.VIS, 0, 0)
-                    cv2.imshow(WinName.VIS, visualization_frame)
+                        moveWindow(WinName.VIS, 0, 0)
+                    imshow(WinName.VIS, visualization_frame)
                 if self.display_background:
-                    cv2.namedWindow(WinName.BGD, cv2.WINDOW_NORMAL)
+                    namedWindow(WinName.BGD, WINDOW_NORMAL)
                     if n_frame == 1:
-                        cv2.moveWindow(WinName.BGD, 0, 500)
-                    cv2.imshow(WinName.BGD, self.background)
+                        moveWindow(WinName.BGD, 0, 500)
+                    imshow(WinName.BGD, self.background)
                 if self.display_binarized:
-                    cv2.namedWindow(WinName.BIN, cv2.WINDOW_NORMAL)
+                    namedWindow(WinName.BIN, WINDOW_NORMAL)
                     if n_frame == 1:
-                        cv2.moveWindow(WinName.BIN, 500, 0)
-                    cv2.imshow(WinName.BIN, binarized_frame)
+                        moveWindow(WinName.BIN, 500, 0)
+                    imshow(WinName.BIN, binarized_frame)
                 if self.display_detected:
-                    cv2.namedWindow(WinName.DET, cv2.WINDOW_NORMAL)
+                    namedWindow(WinName.DET, WINDOW_NORMAL)
                     if n_frame == 1:
-                        cv2.moveWindow(WinName.DET, 500, 500)
-                    cv2.imshow(WinName.DET, detection_mask)
+                        moveWindow(WinName.DET, 500, 500)
+                    imshow(WinName.DET, detection_mask)
 
                 self.fps_estimator.tick()
 
@@ -1050,13 +1102,13 @@ class MultiplePeopleCounter(object):
 
         except IndexError:
             print(self.get_count_in(), self.get_count_out())
-            cv2.destroyAllWindows()
+            destroyAllWindows()
             raise
 
         except KeyboardInterrupt:
             self.close_log_file()
             self.stop.value = True
-            cv2.destroyAllWindows()
+            destroyAllWindows()
             print("[Counter] Closing from keyboard interrupt")
 #        print(h.heap())
 
