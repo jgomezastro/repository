@@ -82,26 +82,31 @@ class DriverProcess(Process):
         """
         # Auto mode
         # Compute binarization threshold from percentile
-        self.binarize_threshold.value = int(
-            round(self.percentile_stdev / 16.0 + 5, 0))
+        bin_thresh = int(round(self.percentile_stdev / 16.0 + 5, 0))
+        if bin_thresh > 30:
+            bin_thresh = 30
+        elif bin_thresh < 5:
+            bin_thresh = 5
+        self.binarize_threshold.value = bin_thresh
 
         # Compute minimal area from camera height.
         # Divided into two lines, because it is not linear.
         if self.camera_height < 2400:
-            min_area = 110
+            min_area = 140
         elif 2400 <= self.camera_height < 2850:
-            min_area = -0.0875 * self.camera_height + 320
+            min_area = -0.1175 * self.camera_height + 410
             min_area = 5 * round(min_area / 5)
         elif 2850 <= self.camera_height <= 3200:
-            min_area = -0.0571 * self.camera_height + 223
+            min_area = -0.1145 * self.camera_height + 420
             min_area = 5 * round(min_area / 5)
         else:
-            min_area = 40
+            min_area = 50
         self.min_area.value = int(min_area)
         print('	DRIVERRRR ---> self.min_area.value = ', self.min_area.value)
         # Adapt detect threshold from middle pixel
         # At 2400 => 9, at 3200 => 5
-        self.detect_threshold.value = int(-(self.camera_height/266) + 17)
+        # self.detect_threshold.value = int(-(self.camera_height/266) + 17)
+        self.detect_threshold.value = 7
 
         print("[Driver] Estimated parameters. Min area: {} | " \
               "Detect Threshold: {} | " \

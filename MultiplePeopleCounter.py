@@ -78,7 +78,7 @@ from numpy import max as maxx
 #import cv2                       ####### opencv2
 from cv2 import FONT_HERSHEY_SIMPLEX
 from cv2 import morphologyEx
-from cv2 import MORPH_OPEN
+#from cv2 import MORPH_OPEN
 from cv2 import MORPH_CLOSE
 from cv2 import __version__
 from cv2 import findContours
@@ -643,10 +643,48 @@ class MultiplePeopleCounter(object):
             (frame < exclusion_threshold))] = self.max_uint8
         bin_frame[where(frame == 0)] = 0
 
-        # kernel (3,3), iterations=2 if heavy noise
-        bin_frame = morphologyEx(bin_frame, MORPH_OPEN,
-                                     ones((3, 3), uint8),
-                                     iterations=self.iterations_number)
+
+
+
+
+########################### APPLICATION PSEUDOCODE OF OPENING
+
+
+        ## kernel (3,3), iterations=2 if heavy noise
+        #bin_frame = morphologyEx(bin_frame, MORPH_OPEN,
+        #                             ones((3, 3), uint8),
+        #                             iterations=self.iterations_number)
+
+        Eroded_A = zeros_like(frame)
+        for i in range(1,frame.shape[0]-1): 
+            for j in range(1,frame.shape[1]-1):
+#                print(bin_frame[i][j])
+                if (bin_frame[i][j] != 0) and (bin_frame[i-1][j-1]> 0)  and (bin_frame[i+1][j-1]> 0) and  (bin_frame[i-1][j+1]> 0) and (bin_frame[i+1][j+1]> 0):
+                    Eroded_A[i][j]=self.max_uint8
+                else:
+                    Eroded_A[i][j]=Eroded_A[i][j]
+
+        AAA=Eroded_A
+        Dil_A=zeros_like(AAA)
+
+        for i in range(1,AAA.shape[0]-1): 
+            for j in range(1,AAA.shape[1]-1):
+                if (AAA[i][j] > 0) and (AAA[i-1][j-1]>=0) and (AAA[i+1][j-1]>=0) and (AAA[i-1][j+1]>=0) and (AAA[i+1][j+1]>=0):
+                    Dil_A[i][j]=self.max_uint8
+                    Dil_A[i-1][j-1]=self.max_uint8
+                    Dil_A[i-1][j]=self.max_uint8
+                    Dil_A[i-1][j+1]=self.max_uint8
+                    Dil_A[i][j-1]=self.max_uint8
+                    Dil_A[i][j+1]=self.max_uint8
+                    Dil_A[i+1][j-1]=self.max_uint8
+                    Dil_A[i+1][j]=self.max_uint8
+                    Dil_A[i+1][j+1]=self.max_uint8
+                else: 
+                    Dil_A[i][j] = Dil_A[i][j]
+        bin_frame = Dil_A
+
+
+
 
         return bin_frame
 #    @profile
@@ -716,10 +754,14 @@ class MultiplePeopleCounter(object):
         # Compute foreground
         foreground = zeros(frame.shape, uint8)
         foreground[:] = (binarized_frame / self.max_uint8) * frame
-        # We change the 0 to 255 because 0 means invalid and not closer
+
+
+#        # We change the 0 to 255 because 0 means invalid and not closer
         foreground[foreground == 0] = self.max_uint8
+
         foreground = morphologyEx(foreground, MORPH_CLOSE, None,
                                       iterations=1)
+
 
         level = nanmin(where(foreground != 0, foreground, nan))
         max_level = maxx(foreground)
@@ -740,6 +782,8 @@ class MultiplePeopleCounter(object):
 
             sized_contours = [(cnt, contourArea(cnt)) for cnt in contours
                               if contourArea(cnt) > self.min_area]
+
+
 
             for contour in sized_contours:
                 # Add contour to detected_mask

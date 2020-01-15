@@ -37,6 +37,10 @@ display_windows:
   binarized: true
   detected: true
   visualization: true
+#  background: false
+#  binarized: false
+#  detected: false
+#  visualization: false
 pushing_data:
   enabled: false              #
   push_url: "http://iot.teraranger.com/iot/push_occupancy?sensor_id=10&people_in="      #
