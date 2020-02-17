@@ -42,13 +42,10 @@ display_windows:
 #  detected: false
 #  visualization: false
 pushing_data:
-  enabled: false
-  #push_url: "" # Also works as mqtt push topic. Python formatted payload with keywords. Available keywords: time, iso_time, sensor_id (only_available with http), nb_in, nb_out, client_id (only available with mqtt)
-  sensor_id: 1
-  push_interval: 60
-  protocol: mqtt #http-get, http-post or mqtt
-  #payload_format: ""  #python formatted payload with keywords. Available keywords: time, iso_time, sensor_id, nb_in, nb_out, client_id (only available with mqtt)
-  mqtt_config_path: "mqtt_config.yaml"
+  enabled: false              #
+  push_url: "http://iot.teraranger.com/iot/push_occupancy?sensor_id=10&people_in="      #
+  sensor_id: 1           #
+  push_interval: 60       #
 logging:
   reset_hour: "00:00"      # the time the counter go back to zero
   #fps_window: 150          # every 150 frames is taken the estimation of the average of fps

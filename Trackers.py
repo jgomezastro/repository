@@ -2,8 +2,9 @@
 from abc import ABCMeta          ###### untouchable ???
 from abc import abstractmethod          ###### untouchable ???
 
-from cv2 import moments          ###### untouchable ???
-from cv2 import boundingRect
+#from cv2 import moments          ###### untouchable ???
+from Polygoncentroid import Polygoncentroid 
+#from cv2 import boundingRect
 
 from Person import Person            ###### untouchable ???
 
@@ -127,35 +128,42 @@ class GreedyTracker(AbstractTracker):
         """
         contour_assigned = [False] * len(contours)
 
-        for i in range(len(contours)):
-            # Image moments help you to calculate some features like center
-            # of mass of the object, area of the object
-            contour_moment = moments(contours[i])
-            # From this moments, you can extract useful data like area,
-            # centroid etc.
-            # Centroid is given by the relations, Cx=M10/M00 and Cy=M01/M00.
-            # This can be done as follow:
-            cx = int(contour_moment['m10'] / contour_moment['m00'])
-            cy = int(contour_moment['m01'] / contour_moment['m00'])
-            # It is a straight rectangle, it doesn't consider the rotation
-            # of the object.
-            # So area of the bounding rectangle won't be minimum
-            x, y, w, h = boundingRect(contours[i])
+#        for i in range(len(contours)):
+#            # Image moments help you to calculate some features like center
+#            # of mass of the object, area of the object
+##            cx, cy = Polygoncentroid(contours[i]) 
+#            contour_moment = moments(contours[i])
+#            # From this moments, you can extract useful data like area,
+#            # centroid etc.
+#            # Centroid is given by the relations, Cx=M10/M00 and Cy=M01/M00.
+#            # This can be done as follow:
+#            cx = int(contour_moment['m10'] / contour_moment['m00'])
+#            cy = int(contour_moment['m01'] / contour_moment['m00'])
+#            # It is a straight rectangle, it doesn't consider the rotation
+#            # of the object.
+#            # So area of the bounding rectangle won't be minimum
+#            x, y, w, h = boundingRect(contours[i])
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            print('esto se usa?')
+#            contour_not_matched = True
+#            for person in self.tracked_objects:
+#                if (abs(cx - person.x) <= (w / 2.0) * self.matching_ratio and
+#                        abs(cy - person.y) <= (h / 2.0) * self.matching_ratio):
+#                    if not contour_assigned[i]:
+#                        contour_not_matched = False
+#                        contour_assigned[i] = True
+#                        person.update_location(cx, cy)
 
-            contour_not_matched = True
-            for person in self.tracked_objects:
-                if (abs(cx - person.x) <= (w / 2.0) * self.matching_ratio and
-                        abs(cy - person.y) <= (h / 2.0) * self.matching_ratio):
-                    if not contour_assigned[i]:
-                        contour_not_matched = False
-                        contour_assigned[i] = True
-                        person.update_location(cx, cy)
+#            if contour_not_matched:
+#                new_person = Person(cx, cy)  # , self.line_up, self.line_down)
+#                self.tracked_objects.append(new_person)
 
-            if contour_not_matched:
-                new_person = Person(cx, cy)  # , self.line_up, self.line_down)
-                self.tracked_objects.append(new_person)
-
-        self.maintain_tracking_list()
+#        self.maintain_tracking_list()
 
 
 class ProximityTracker(AbstractTracker):
@@ -185,13 +193,14 @@ class ProximityTracker(AbstractTracker):
         for i in range(len(contours)):
             # Image moments help you to calculate some features like center
             # of mass of the object, area of the object
-            contour_moment = moments(contours[i])
+            cx, cy = Polygoncentroid(contours[i]) 
+#            contour_moment = moments(contours[i])
             # From this moments, you can extract useful data like area,
             # centroid etc.
             # Centroid is given by the relations, Cx=M10/M00 and Cy=M01/M00.
             # This can be done as follow:
-            cx = int(contour_moment['m10'] / contour_moment['m00'])
-            cy = int(contour_moment['m01'] / contour_moment['m00'])
+#            cx = int(contour_moment['m10'] / contour_moment['m00'])
+#            cy = int(contour_moment['m01'] / contour_moment['m00'])
 
             # Here we create the list of possible contour-person
             # associations called partnership
@@ -313,9 +322,11 @@ class ProximityTracker(AbstractTracker):
         # tracked person
         if len(contour_not_assigned) > 0:
             for cnt in contour_not_assigned:
-                contour_moment = moments(cnt)
-                cx = int(contour_moment['m10'] / contour_moment['m00'])
-                cy = int(contour_moment['m01'] / contour_moment['m00'])
+
+                cx, cy = Polygoncentroid(cnt) 
+#                contour_moment = moments(cnt)
+#                cx = int(contour_moment['m10'] / contour_moment['m00'])
+#                cy = int(contour_moment['m01'] / contour_moment['m00'])
                 self.tracked_objects.append(
                     Person(cx, cy))
 

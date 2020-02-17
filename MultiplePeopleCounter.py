@@ -8,6 +8,16 @@ from datetime import datetime
 from datetime import date
 from csv import writer as writerr
 from csv import reader as readerr
+from contourAreaa import contourAreaa
+from Polygontestpoint import Polygontestpoint
+from openingg import openingg
+from closingg import closingg
+from min_contourss import min_contourss
+from Polygoncentroid import Polygoncentroid
+#from Drawfilledcontour import Drawfilledcontour
+from Drawfilledcontour7 import Drawfilledcontour
+from FindContourss import FindContourss
+#from Drawfilledcontour5 import Drawfilledcontour
 from collections import deque    ####### collections ---> specialized container datatypes
                                  ####### deque       ---> list-like container with fast appends and pops on either end
                                  #######                  Returns a new deque object initialized left-to-right 
@@ -62,6 +72,8 @@ from numpy import nanmin
 from numpy import nan
 from numpy import frombuffer
 from numpy import copy
+from numpy import squeeze
+from numpy import concatenate
 from numpy import float as floatt
 from numpy import max as maxx
                                  ####### among other things:
@@ -78,9 +90,8 @@ from numpy import max as maxx
 #import cv2                       ####### opencv2
 from cv2 import FONT_HERSHEY_SIMPLEX
 from cv2 import morphologyEx
-#from cv2 import MORPH_OPEN
+from cv2 import MORPH_OPEN
 from cv2 import MORPH_CLOSE
-from cv2 import __version__
 from cv2 import findContours
 from cv2 import RETR_EXTERNAL
 from cv2 import CHAIN_APPROX_SIMPLE
@@ -107,6 +118,7 @@ from cv2 import WINDOW_NORMAL
 from cv2 import moveWindow
 from cv2 import imshow
 from cv2 import destroyAllWindows
+
 
 from Person import TrackedObject             ###### 
 from DriverProcess import DriverProcess          ###### parameter computation or estimation inside, initial background
@@ -644,9 +656,6 @@ class MultiplePeopleCounter(object):
         bin_frame[where(frame == 0)] = 0
 
 
-
-
-
 ########################### APPLICATION PSEUDOCODE OF OPENING
 
 
@@ -655,36 +664,8 @@ class MultiplePeopleCounter(object):
         #                             ones((3, 3), uint8),
         #                             iterations=self.iterations_number)
 
-        Eroded_A = zeros_like(frame)
-        for i in range(1,frame.shape[0]-1): 
-            for j in range(1,frame.shape[1]-1):
-#                print(bin_frame[i][j])
-                if (bin_frame[i][j] != 0) and (bin_frame[i-1][j-1]> 0)  and (bin_frame[i+1][j-1]> 0) and  (bin_frame[i-1][j+1]> 0) and (bin_frame[i+1][j+1]> 0):
-                    Eroded_A[i][j]=self.max_uint8
-                else:
-                    Eroded_A[i][j]=Eroded_A[i][j]
 
-        AAA=Eroded_A
-        Dil_A=zeros_like(AAA)
-
-        for i in range(1,AAA.shape[0]-1): 
-            for j in range(1,AAA.shape[1]-1):
-                if (AAA[i][j] > 0) and (AAA[i-1][j-1]>=0) and (AAA[i+1][j-1]>=0) and (AAA[i-1][j+1]>=0) and (AAA[i+1][j+1]>=0):
-                    Dil_A[i][j]=self.max_uint8
-                    Dil_A[i-1][j-1]=self.max_uint8
-                    Dil_A[i-1][j]=self.max_uint8
-                    Dil_A[i-1][j+1]=self.max_uint8
-                    Dil_A[i][j-1]=self.max_uint8
-                    Dil_A[i][j+1]=self.max_uint8
-                    Dil_A[i+1][j-1]=self.max_uint8
-                    Dil_A[i+1][j]=self.max_uint8
-                    Dil_A[i+1][j+1]=self.max_uint8
-                else: 
-                    Dil_A[i][j] = Dil_A[i][j]
-        bin_frame = Dil_A
-
-
-
+        bin_frame = openingg(bin_frame)
 
         return bin_frame
 #    @profile
@@ -731,6 +712,10 @@ class MultiplePeopleCounter(object):
             self.background_intermediate)
         self.background[:] = self.background_intermediate
         self.background.astype(uint8)
+
+
+
+
 #    @profile
     def head_contours_extraction(self, frame, binarized_frame):
         """
@@ -752,61 +737,103 @@ class MultiplePeopleCounter(object):
         detected = zeros(frame.shape, uint8)
 
         # Compute foreground
-        foreground = zeros(frame.shape, uint8)
-        foreground[:] = (binarized_frame / self.max_uint8) * frame
+
+##########################################################   APPLICATION OF THE PSEUDOCODE
+#        foreground = zeros(frame.shape, uint8)
+
+        closing = closingg(binarized_frame)
 
 
-#        # We change the 0 to 255 because 0 means invalid and not closer
+        foreground = (closing / self.max_uint8) * frame
+
+#        foreground[:] = (binarized_frame / self.max_uint8) * frame
+
+
+##        # We change the 0 to 255 because 0 means invalid and not closer
         foreground[foreground == 0] = self.max_uint8
 
-        foreground = morphologyEx(foreground, MORPH_CLOSE, None,
-                                      iterations=1)
+#        foreground = morphologyEx(foreground, MORPH_CLOSE, None,
+#                                      iterations=1)
 
 
         level = nanmin(where(foreground != 0, foreground, nan))
         max_level = maxx(foreground)
+
 
         while (level + self.detect_threshold) < max_level:
             current_slice = zeros(frame.shape, uint8)
             current_slice[foreground < level] = 1.0 ##### potential optimization
 
             # Find contours
-#            if(cv2.__version__[0]!='4'):
-#            (_, contours, _) = cv2.findContours(current_slice,
-#                                            cv2.RETR_EXTERNAL,
-#                                            cv2.CHAIN_APPROX_SIMPLE)
-#            else:
+###            if(cv2.__version__[0]!='4'):
+###            (_, contours, _) = cv2.findContours(current_slice,
+###                                            cv2.RETR_EXTERNAL,
+###                                            cv2.CHAIN_APPROX_SIMPLE)
+###            else:
             (contours, _) = findContours(current_slice,
                                          RETR_EXTERNAL,
                                          CHAIN_APPROX_SIMPLE)
 
-            sized_contours = [(cnt, contourArea(cnt)) for cnt in contours
-                              if contourArea(cnt) > self.min_area]
+#            contours = FindContourss(current_slice)
 
+######################################  APPLICATION PSEUDOCODE CONTOUR AREA
+
+            sized_contours = [(cnt, contourAreaa(cnt)) for cnt in contours
+                              if contourAreaa(cnt) > self.min_area]
+
+
+
+#            sized_contours = [(cnt, contourArea(cnt)) for cnt in contours
+#                              if contourArea(cnt) > self.min_area]
 
 
             for contour in sized_contours:
-                # Add contour to detected_mask
+#                 Add contour to detected_mask
                 contour_mask = zeros(frame.shape, uint8)
-                drawContours(contour_mask, [contour[0]], -1, 1, -1)
+#######################################  APPLICATION PSEUDOCODE DRAW CONTOUR
+                contourr = squeeze(contour[0], axis=1)
+                maxaa=0
+                minaa=255
+                maxab=0
+                minab=255
+                for i in range(len(contourr)):
+                    if contourr[i][1]>maxaa: maxaa=contourr[i][1]
+                    if contourr[i][1]<minaa: minaa=contourr[i][1]
+                    if contourr[i][0]>maxab: maxab=contourr[i][0]
+                    if contourr[i][0]<minab: minab=contourr[i][0]
+                    
+
+                Drawfilledcontour(contour_mask, contour[0], minaa, maxaa, minab, maxab)
+
+
+#                drawContours(contour_mask, [contour[0]], -1, 1, -1)
+                
 
                 extracted_foreground = frame * contour_mask
                 extracted_foreground[
                     extracted_foreground == 0] = self.max_uint8
 
-                a, b, min_loc, c = minMaxLoc(extracted_foreground)
+
+
+
+######################################  APPLICATION PSEUDOCODE min location
+#                a, b, min_loc, c = minMaxLoc(extracted_foreground)
+                a, min_loc = min_contourss(extracted_foreground, minaa, maxaa, minab, maxab)
+
 
                 if len(sized_contours) > len(contours_minima):
                     if len(head_contours) == 0:
                         contours_minima.append(min_loc)
                         minima_values.append(a)
                         head_contours.append(contour[0])
-                        drawContours(detected, [contour[0]], -1, 1, -1)     # MAYBE REMOVED
+              #          drawContours(detected, [contour[0]], -1, 1, -1)     # MAYBE REMOVED
                     else:
                         inside_count = 0
                         for old_min in contours_minima:
-                            dist = pointPolygonTest(contour[0], old_min,
-                                                        False)
+######################################  APPLICATION PSEUDOCODE POINT POLYGON TEST
+#                            dist = pointPolygonTest(contour[0], old_min,
+#                                                        False)
+                            dist = Polygontestpoint(contour[0], old_min)
                             if dist >= 0:
                                 inside_count += 1
                                 if inside_count == 1:
@@ -819,7 +846,9 @@ class MultiplePeopleCounter(object):
                         else:
                             head_contours[index_to_replace] = contour[0]
 
-                    drawContours(detected, [contour[0]], -1, 1, -1)     ####### double draw contours?
+#                    drawContours(detected, [contour[0]], -1, 1, -1)     ####### double draw contours?
+              #      cx, cy = Polygoncentroid(contour[0]) 
+                    Drawfilledcontour(detected, contour[0], minaa, maxaa, minab, maxab)
             level += self.detect_threshold
         return head_contours, detected * frame, contours_minima
 #    @profile
@@ -951,6 +980,7 @@ class MultiplePeopleCounter(object):
                     self.visualization_colour, 1, LINE_AA)
 
         return rgb_frame
+
 #################################################################################################################################################
 #    @profile
     def get_frame(self, timeout):
@@ -1064,12 +1094,14 @@ class MultiplePeopleCounter(object):
         functions.
         """
 #        h = hpy()
+        self.n_frame = -1
         n_frame = -1
         try:
             while True:
                 depth_array = self.get_frame(0.1)
                 if depth_array is not None:
                     n_frame += 1
+                    self.n_frame += 1
                 else:
                     self.wait_for_key()
                     continue
@@ -1135,6 +1167,7 @@ class MultiplePeopleCounter(object):
                     if n_frame == 1:
                         moveWindow(WinName.DET, 500, 500)
                     imshow(WinName.DET, detection_mask)
+
 
                 self.fps_estimator.tick()
 

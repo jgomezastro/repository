@@ -1,7 +1,7 @@
 # coding=utf-8
 from abc import abstractmethod          ###### untouchable ???
-from cv2 import pointPolygonTest          ###### untouchable ???
-
+#from cv2 import pointPolygonTest          ###### untouchable ???
+from Polygontestpointt import Polygontestpoint
 
 class CounterType(object):
     """
@@ -129,8 +129,11 @@ class AreaCounter(AbstractInOutCounter):
         """
         if len(self.area_polygon) < 3:
             return
-        res = pointPolygonTest(self.area_polygon, tracked_object.get_loc(),
-                                   measureDist=False)     ######### The function determines whether the point is inside a contour, outside, or lies on an edge (or coincides with a vertex). It returns positive (inside), negative (outside), or zero (on an edge) value, correspondingly. When measureDist=false , the return value is +1, -1, and 0, respectively. Otherwise, the return value is a signed distance between the point and the nearest contour edge.
+######################################  APPLICATION PSEUDOCODE POINT POLYGON TEST
+
+#        res = pointPolygonTest(self.area_polygon, tracked_object.get_loc(),
+#                                   measureDist=False)     ######### The function determines whether the point is inside a contour, outside, or lies on an edge (or coincides with a vertex). It returns positive (inside), negative (outside), or zero (on an edge) value, correspondingly. When measureDist=false , the return value is +1, -1, and 0, respectively. Otherwise, the return value is a signed distance between the point and the nearest contour edge.
+        res = Polygontestpoint(self.area_polygon, tracked_object.get_loc())
 
         # Add the object to the count list if first time
         if tracked_object not in self.counts:
